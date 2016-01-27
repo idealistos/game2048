@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/Game2048.iml" filepath="$PROJECT_DIR$/Game2048.iml" />
+      <module fileurl="file://D:/Programming/xgboost/xgboost/java/xgboost4j/xgboost4j.iml" filepath="D:/Programming/xgboost/xgboost/java/xgboost4j/xgboost4j.iml" />
+    </modules>
+  </component>
+</project>

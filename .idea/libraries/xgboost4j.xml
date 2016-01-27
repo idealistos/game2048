@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="xgboost4j">
+    <CLASSES>
+      <root url="file://D:/Programming/xgboost/xgboost/java/xgboost4j" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="file://D:/Programming/xgboost/xgboost/java/xgboost4j/src/main/java" />
+      <root url="file://D:/Programming/xgboost/xgboost/java/xgboost4j/src/test/java" />
+    </SOURCES>
+  </library>
+</component>

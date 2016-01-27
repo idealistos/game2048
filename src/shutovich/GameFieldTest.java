@@ -6,6 +6,7 @@ import static org.junit.Assert.*;
 
 public class GameFieldTest {
 
+    @SuppressWarnings("static-method")
     @Test
     public void testGetTrapPenalty() throws Exception {
         GameField field = new GameField();
@@ -19,6 +20,7 @@ public class GameFieldTest {
         assertTrue("No trap penalty", field.getTrapPenalty() == 0);
     }
 
+    @SuppressWarnings("static-method")
     @Test
     public void testLocateCorner() throws Exception {
         GameField field = new GameField();

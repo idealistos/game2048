@@ -1,22 +1,21 @@
 package shutovich;
 
+import java.util.AbstractMap.SimpleEntry;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
+import java.util.function.IntPredicate;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
 import org.apache.commons.lang3.ArrayUtils;
-import org.apache.commons.math3.linear.DiagonalMatrix;
 import org.dmlc.xgboost4j.Booster;
 import org.dmlc.xgboost4j.DMatrix;
 import org.dmlc.xgboost4j.util.Trainer;
 import org.dmlc.xgboost4j.util.XGBoostError;
-
-import java.util.*;
-import java.util.AbstractMap.SimpleEntry;
-import java.util.Map.Entry;
-import java.util.function.Function;
-import java.util.function.IntPredicate;
-import java.util.function.Predicate;
-import java.util.stream.Collectors;
-import java.util.stream.DoubleStream;
-import java.util.stream.IntStream;
-import java.util.stream.Stream;
 
 /**
  * Created by U on 1/25/2016.
@@ -145,7 +144,7 @@ public class Classifier {
         }
     }
 
-    double getFMeasure(float[][] predicts, float[] testLabels, double threshold, int unsafeCount) {
+    static double getFMeasure(float[][] predicts, float[] testLabels, double threshold, int unsafeCount) {
             List<Double> markedLabels = IntStream.range(0, predicts.length).filter(i -> predicts[i][0] > threshold)
                 .mapToObj(i -> new Double(testLabels[i])).collect(Collectors.toList());
         long correct = markedLabels.stream().filter(x -> x == 1.0).count();
@@ -155,20 +154,20 @@ public class Classifier {
         return fMeasure;
     }
 
-    void checkPredictLowFP(float[][] predicts, float[] testLabels) {
+    static void checkPredictLowFP(float[][] predicts, float[] testLabels) {
         assert(predicts.length == testLabels.length);
         double[] safePredicts = IntStream.range(0, predicts.length).filter(i -> testLabels[i] == 0.0)
                 .mapToDouble(i -> predicts[i][0]).sorted().toArray();
         double threshold = safePredicts[95 * safePredicts.length / 100];
-        getFMeasure(predicts, testLabels, threshold, testLabels.length - safePredicts.length);
+        Classifier.getFMeasure(predicts, testLabels, threshold, testLabels.length - safePredicts.length);
     }
 
-    void checkPredictLowTN(float[][] predicts, float[] testLabels) {
+    static void checkPredictLowTN(float[][] predicts, float[] testLabels) {
         assert(predicts.length == testLabels.length);
         double[] unsafePredicts = IntStream.range(0, predicts.length).filter(i -> testLabels[i] == 1.0)
                 .mapToDouble(i -> predicts[i][0]).sorted().toArray();
         double threshold = unsafePredicts[5 * unsafePredicts.length / 100];
-        getFMeasure(predicts, testLabels, threshold, unsafePredicts.length);
+        Classifier.getFMeasure(predicts, testLabels, threshold, unsafePredicts.length);
     }
 
     void trainModel(List<Entry<Long, Integer>> positions, Map<Long, List<Double>> features) {
@@ -185,8 +184,8 @@ public class Classifier {
                         Arrays.asList(new SimpleEntry<>("train", train), new SimpleEntry<>("test", test)), null, null);
                 float[][] predicts = booster.predict(test);
                 float[] testLabels = test.getLabel();
-                checkPredictLowFP(predicts, testLabels);
-                checkPredictLowTN(predicts, testLabels);
+                Classifier.checkPredictLowFP(predicts, testLabels);
+                Classifier.checkPredictLowTN(predicts, testLabels);
                 int unsafeCount = (int) IntStream.range(0, testLabels.length).filter(j -> testLabels[j] == 1.0f).count();
                 double fMeasure = getFMeasure(predicts, testLabels, defaultThreshold, unsafeCount);
                 averageFMeasure += fMeasure / 5;

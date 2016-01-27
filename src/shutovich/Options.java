@@ -1,15 +1,14 @@
 package shutovich;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonPrimitive;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
+
+import com.google.gson.Gson;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonPrimitive;
 
 /**
  * Created by U on 12/22/2015.
@@ -65,7 +64,6 @@ public class Options {
 
     Options scaleOptions(double[] factors) {
         JsonElement element = new Gson().toJsonTree(this);
-        JsonObject newRoot = new JsonObject();
         int i = 0;
         for (Map.Entry<String, JsonElement> entry : element.getAsJsonObject().entrySet()) {
             JsonPrimitive value = entry.getValue().getAsJsonPrimitive();

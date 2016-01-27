@@ -1,14 +1,12 @@
 package shutovich;
 
-import org.dmlc.xgboost4j.Booster;
-import org.dmlc.xgboost4j.util.XGBoostError;
-
 import java.util.AbstractMap.SimpleEntry;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.stream.Collectors;
+
+import org.dmlc.xgboost4j.Booster;
 
 /**
  * Created by U on 1/26/2016.
@@ -66,7 +64,7 @@ public class ClassifierFallbackStrategy extends CheckingFallbackStrategy {
             return new Action(null, 1e6, null);
         }
         List<Long> allPositions = positionsToCheck.entrySet().stream()
-                .flatMap(x -> x.getValue().stream().flatMap(y -> y.getKey().values().stream()))
+                .<Long>flatMap(x -> x.getValue().stream().flatMap(y -> y.getKey().values().stream()))
                 .collect(Collectors.toList());
         if (allPositions.isEmpty()) {
             Direction direction = positionsToCheck.keySet().iterator().next();

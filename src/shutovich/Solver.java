@@ -3,7 +3,13 @@ package shutovich;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.BitSet;
+import java.util.Collections;
+import java.util.List;
+import java.util.Map;
+import java.util.Random;
 import java.util.stream.Collectors;
 
 /**
@@ -63,7 +69,7 @@ public abstract class Solver {
     void saveCache() {
         try {
             Files.write(new File("cache").toPath(), (Iterable<String>) () -> (cache.entrySet().stream()
-                    .flatMap(x -> x.getValue().stream().map(x1 -> x.getKey() + "\t" + x1)).iterator()));
+                    .<String>flatMap(x -> x.getValue().stream().map(x1 -> x.getKey() + "\t" + x1)).iterator()));
         } catch (IOException e) {
             e.printStackTrace();
         }

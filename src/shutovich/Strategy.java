@@ -43,7 +43,7 @@ public abstract class Strategy {
                 field.debug = true;
             }
             assert(direction == null || !field.equals(oldField));
-            assert(direction == null || field.equals(oldField.shift(direction)));
+            assert(oldField != null && (direction == null || field.equals(oldField.shift(direction))));
         }
         return (direction != null);
     }

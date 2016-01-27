@@ -1,22 +1,24 @@
 package shutovich;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonPrimitive;
-
-import javax.swing.*;
-import javax.swing.border.LineBorder;
-
-import java.awt.*;
+import java.awt.Color;
+import java.awt.Font;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.util.*;
+import java.util.AbstractMap;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.Map.Entry;
 import java.util.stream.Collectors;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JTextArea;
+import javax.swing.border.LineBorder;
 
 public class Main {
 
@@ -82,7 +84,7 @@ public class Main {
                                             }
                                             Thread.sleep(100);
                                         } catch (InterruptedException e) {
-
+                                            // Empty
                                         }
                                     }
                                 }
@@ -103,8 +105,9 @@ public class Main {
     }
 
 
+    @SuppressWarnings("unused")
     public static void main(String[] args) {
-        int mode = 3;
+        int mode = 1;
         // if (true) {
         if (mode == 0) {
             new Window();

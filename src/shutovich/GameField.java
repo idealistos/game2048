@@ -1,8 +1,12 @@
 package shutovich;
 
-import java.util.*;
-import java.util.Map.Entry;
 import java.util.AbstractMap.SimpleEntry;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Random;
 import java.util.stream.Collectors;
 import java.util.stream.DoubleStream;
 
@@ -30,7 +34,7 @@ public class GameField {
 
     GameField(long lines) {
         this.lines = lines;
-        this.swap = swapLines(lines);
+        this.swap = GameField.swapLines(lines);
     }
 
     void reset() {
@@ -138,7 +142,7 @@ public class GameField {
         return sum;
     }
 
-    boolean isFixedLine(long data, int p) {
+    static boolean isFixedLine(long data, int p) {
         int p1 = p + 12;
         long v = (data >>> p) & 0xFl;
         while (p < p1) {
@@ -152,7 +156,7 @@ public class GameField {
         return true;
     }
 
-    boolean canShiftLine(long data, int p, boolean increasing) {
+    static boolean canShiftLine(long data, int p, boolean increasing) {
         long v = (data >>> p) & 0xFl;
         for (int x = 1; x < 4; x++) {
             p += 4;
@@ -172,14 +176,14 @@ public class GameField {
     boolean canShift(Direction d) {
         long data = (d.swap)? swap : lines;
         for (int p = 0; p < 64; p += 16) {
-            if (canShiftLine(data, p, d.increasing)) {
+            if (GameField.canShiftLine(data, p, d.increasing)) {
                 return true;
             }
         }
         return false;
     }
 
-    long swapLines(long data) {
+    static long swapLines(long data) {
         // Line 1: 0, 4 - 1, 8 - 2, 12 - 3
         // Line 2: 1 - 4, 5 - 5, 9 - 6, 13 - 7
         // Line 3: 2 - 8, 6 - 9, 10 - 10, 14 - 11
@@ -194,10 +198,10 @@ public class GameField {
     }
 
     void checkSwap() {
-        long swap1 = swapLines(lines);
-        long lines1 = swapLines(swap);
-        long swap2 = swapLines(lines1);
-        long lines2 = swapLines(swap1);
+        long swap1 = GameField.swapLines(lines);
+        long lines1 = GameField.swapLines(swap);
+        long swap2 = GameField.swapLines(lines1);
+        long lines2 = GameField.swapLines(swap1);
         System.out.println(Long.toHexString(lines) + ", " + Long.toHexString(lines1) + ", " + Long.toHexString(lines2));
         System.out.println(Long.toHexString(swap) + ", " + Long.toHexString(swap1) + ", " + Long.toHexString(swap2));
     }
@@ -254,10 +258,10 @@ public class GameField {
         }
         if (d.swap) {
             swap = newData;
-            lines = swapLines(newData);
+            lines = GameField.swapLines(newData);
         } else {
             lines = newData;
-            swap = swapLines(newData);
+            swap = GameField.swapLines(newData);
         }
         // checkSwap();
     }
@@ -281,7 +285,7 @@ public class GameField {
         return this;
     }
 
-    int getLineIncreasingMismatch(long data, int p) {
+    static int getLineIncreasingMismatch(long data, int p) {
         // Adds penalty for each 2^i followed by 2^k if i > k; 0 counts as 2
         // Penalty: i * (i - k) if k >= 2, (3 / 2) * i * (i - 1) if k = 1
         long v = Math.max((data >>> p) & 0xFl, 1);
@@ -300,12 +304,12 @@ public class GameField {
     int getRightDownPenalty() {
         int penalty = 0;
         for (int p = 0; p < 64; p += 16) {
-            penalty += getLineIncreasingMismatch(lines, p) + getLineIncreasingMismatch(swap, p);
+            penalty += GameField.getLineIncreasingMismatch(lines, p) + GameField.getLineIncreasingMismatch(swap, p);
         }
         return penalty;
     }
 
-    long getTrapPositionsMask(long data, boolean increasing) {
+    static long getTrapPositionsMask(long data, boolean increasing) {
         // If adding a number X (X = 1 or 2) on position p leads to a "trap", set the corresponding bit in the mask to 1
         int pNotFixed = -1;
         for (int p = 0; p < 64; p += 16) {
@@ -369,7 +373,7 @@ public class GameField {
         if (cornerValue > 5) {
             boolean[] allowed = new boolean[2];
             for (int i = 0; i < 2; i++) {
-                allowed[i] = isFixedLine((i == 0)? lines : swap, 48);
+                allowed[i] = GameField.isFixedLine((i == 0)? lines : swap, 48);
             }
             if (allowed[0] && allowed[1]) {
                 return 0;
@@ -377,7 +381,7 @@ public class GameField {
             int iMask = 0;
             for (int i = 0; i < 2; i++) {
                 for (int j = 0; j < (allowed[i]? 2 : 1); j++) {
-                    long mask = getTrapPositionsMask((i == 0) ? lines : swap, j == 0);
+                    long mask = GameField.getTrapPositionsMask((i == 0) ? lines : swap, j == 0);
                     mask = (i == 0)? mask : swapLines(mask);
                     maskTotal &= mask;
                     if (maskTotal == 0) {
@@ -415,9 +419,9 @@ public class GameField {
             return false;
         } else if (p == 60) {
             if (direction == Direction.LEFT) {
-                return !isFixedLine(lines, 48);
+                return !GameField.isFixedLine(lines, 48);
             } else if (direction == Direction.UP) {
-                return !isFixedLine(swap, 48);
+                return !GameField.isFixedLine(swap, 48);
             } else {
                 return false;
             }

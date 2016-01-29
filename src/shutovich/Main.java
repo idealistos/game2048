@@ -107,14 +107,14 @@ public class Main {
 
     @SuppressWarnings("unused")
     public static void main(String[] args) {
-        int mode = 1;
+        int mode = 3;
         // if (true) {
         if (mode == 0) {
             new Window();
         } else if (mode == 1) {
             Options options = new Options();
             Solver solver = new FittedPolySolver(options, true);
-            FieldSaver saver = new FieldSaver("pos.1-50", true, false);
+            FieldSaver saver = null; // new FieldSaver("pos.1-50", true, false);
             for (int i = 0; i < 14; i++) {
                 System.out.println("Average: " + String.format("%.2f", solver.getQuality(options, 1 << i, saver)));
             }

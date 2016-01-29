@@ -11,7 +11,7 @@ public class StrategyFactory {
     }
 
     static FallbackStrategy createFallbackStrategy(Options options) {
-        int mode = 5;
+        int mode = 1;
         if (mode == 0) {
             String[] modelFileNames = {"model.10", "model.5"};
             double[] weights = {1.0, options.closeFallbackWeight};

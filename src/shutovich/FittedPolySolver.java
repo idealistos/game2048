@@ -10,8 +10,8 @@ import java.util.*;
  */
 public class FittedPolySolver extends Solver {
 
-    FittedPolySolver(Options options) {
-        super(options);
+    FittedPolySolver(Options options, boolean debug) {
+        super(options, debug);
     }
 
     double[] getCoefficients(List<Map.Entry<Double, Double>> data, BitSet omitted) {

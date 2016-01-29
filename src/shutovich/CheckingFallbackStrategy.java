@@ -24,7 +24,7 @@ public abstract class CheckingFallbackStrategy implements FallbackStrategy {
     public boolean needsFallback(GameField field) {
         try {
             float[][] predict = getCheckingModel().predict(Classifier.getMatrix(Arrays.asList(field.getFeatures())));
-            if (count++ % 1000 == 0) {
+            if (count++ % 100000 == 0) {
                 System.out.println("" + count + ", " + predict[0][0]);
             }
             // System.out.println(predict[0][0]);

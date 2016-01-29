@@ -23,8 +23,8 @@ public class LoessSolver extends Solver {
 
     List<List<Map.Entry<Double, Double>>> dataToLog = new ArrayList<>();
 
-    LoessSolver(Options options) {
-        super(options);
+    LoessSolver(Options options, boolean debug) {
+        super(options, debug);
     }
 
     PolynomialSplineFunction interpolate(List<Map.Entry<Double, Double>> data, BitSet omitted) {

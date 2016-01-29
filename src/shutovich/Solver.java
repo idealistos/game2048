@@ -3,10 +3,12 @@ package shutovich;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.BitSet;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
@@ -18,7 +20,7 @@ import java.util.stream.Collectors;
 public abstract class Solver {
 
     Options defaultOptions;
-    boolean printStats = false;
+    boolean debug;
     double minFactor = 0.01;
     double maxFactor = 100.0;
     List<String> header;
@@ -26,8 +28,9 @@ public abstract class Solver {
     Map<String, Integer> usedCounts;
     Random random = new Random();
 
-    Solver(Options defaultOptions) {
+    Solver(Options defaultOptions, boolean debug) {
         this.defaultOptions = defaultOptions;
+        this.debug = debug;
         header = defaultOptions.getHeader();
         random.setSeed(1L);
         try {
@@ -82,6 +85,7 @@ public abstract class Solver {
     }
 
     double getQuality(Options options, int tryCount, FieldSaver saver) {
+        long time = debug? System.nanoTime() : 0;
         String key = options.toString();
         List<Double> values = cache.get(key);
         if (values != null) {
@@ -94,7 +98,7 @@ public abstract class Solver {
         Strategy strategy = StrategyFactory.createStrategy(options);
         int[] maxCounts = new int[16];
         for (int p = 0; p < tryCount; p++) {
-            if (printStats && p % 100 == 0) {
+            if (debug && p % 100 == 0) {
                 System.out.print("" + p + " ");
             }
             int maxValue = strategy.simulate(saver);
@@ -103,7 +107,7 @@ public abstract class Solver {
         int allSum = 0;
         int allCounts = 0;
         for (int p = 1; p < 16; p++) {
-            if (printStats) {
+            if (debug) {
                 System.out.println("" + p + ": " + maxCounts[p]);
             }
             allSum += p * maxCounts[p];
@@ -111,6 +115,10 @@ public abstract class Solver {
         }
         double value = allSum / (allCounts + 0.0);
         addToCache(options, value);
+        if (debug) {
+            System.out.println("" + value + " in " + (System.nanoTime() - time) / (tryCount * 1e9) + " s ["
+                    + tryCount + "]");
+        }
         return value;
     }
 

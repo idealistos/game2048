@@ -113,11 +113,10 @@ public class Main {
             new Window();
         } else if (mode == 1) {
             Options options = new Options();
-            Solver solver = new FittedPolySolver(options);
-            solver.printStats = true;
-            FieldSaver saver = null; // new FieldSaver("", true);
-            for (int i = 0; i < 10; i++) {
-                System.out.println("Average: " + String.format("%.2f", solver.getQuality(options, 100, saver)));
+            Solver solver = new FittedPolySolver(options, true);
+            FieldSaver saver = new FieldSaver("pos.1-50", true, false);
+            for (int i = 0; i < 14; i++) {
+                System.out.println("Average: " + String.format("%.2f", solver.getQuality(options, 1 << i, saver)));
             }
         } else if (mode == 2) {
             Options options = new Options();
@@ -132,29 +131,31 @@ public class Main {
                 }
                 Options options1 = options.scaleOptions(factors);
                 for (int iTry = 0; iTry < 3; iTry++) {
-                    double quality = new FittedPolySolver(options).getQuality(options1, 500, null);
+                    double quality = new FittedPolySolver(options, true).getQuality(options1, 500, null);
                     System.out.println("" + quality + "\t" + options1.getValues().stream().collect(Collectors.joining("\t")));
                 }
             }
 
         } else if (mode == 3) {
             Options options = new Options();
-            Solver solver = new LoessSolver(options);
+            Solver solver = new LoessSolver(options, true);
             // Options options1 = solver.optimizeInSequence(Arrays.asList(3, 1, 0, 2, 4, 5, 3, 1, 0, 2, 4, 5));
             Options options1 = solver.optimizeInSequence(Arrays.asList(6, 7, 3, 1, 6, 7, 0, 1, 2, 3, 4, 5, 6, 7));
-            solver.printStats = true;
             System.out.println(options1.toString());
-            System.out.println("Average: " + String.format("%.2f", solver.getQuality(options1, 5000, new FieldSaver("", true))));
+            System.out.println("Average: " + String.format("%.2f",
+                    solver.getQuality(options1, 5000, new FieldSaver("", true, false))));
             solver.saveCache();
         } else if (mode == 4) {
-            List<Entry<Long, Integer>> positions = new FieldSaver("", false).loadPositions();
+            List<Entry<Long, Integer>> positions = new FieldSaver("pos.1-50.1", false, true).loadPositions();
             Map<Long, List<Double>> features = positions.stream()
                     .map(x -> new AbstractMap.SimpleEntry<>(x.getKey(), new GameField(x.getKey()).getFeatures()))
                     .collect(Collectors.toMap(Entry::getKey, Entry::getValue, (x1, x2) -> x1));
-            new Classifier(5, "model.5", 0.3).trainModel(positions, features);
-            new Classifier(10, "model.10", 0.5).trainModel(positions, features);
+            new Classifier(10, "model-50.10.top", 0.5, Classifier.Mode.TOP_ONLY).trainModel(positions, features);
+            new Classifier(5, "model-50.5.top", 0.3, Classifier.Mode.TOP_ONLY).trainModel(positions, features);
+            new Classifier(10, "model-50.10.fair", 0.5, Classifier.Mode.FAIR).trainModel(positions, features);
+            new Classifier(5, "model-50.5.fair", 0.3, Classifier.Mode.FAIR).trainModel(positions, features);
         } else if (mode == 5) {
-            FieldSaver saver = new FieldSaver("d:\\programming\\java\\game2048\\saved.0", false);
+            FieldSaver saver = new FieldSaver("d:\\programming\\java\\game2048\\saved.0", false, false);
             List<Entry<Long, Integer>> positions = saver.loadPositions();
             Map<Long, List<Double>> features = positions.stream()
                     .map(x -> new AbstractMap.SimpleEntry<>(x.getKey(), new GameField(x.getKey()).getFeatures()))

@@ -19,7 +19,7 @@ public class GameField {
     // "Swap pos" = (pos % 4) * 4 + (pos / 4)
     long lines = 0;
     long swap = 0;
-    Random random = new Random();
+    static Random random = new Random();
     boolean debug = false;
 
 
@@ -28,7 +28,6 @@ public class GameField {
     GameField(GameField source) {
         lines = source.lines;
         swap = source.swap;
-        random = source.random;
         debug = source.debug;
     }
 
@@ -87,8 +86,8 @@ public class GameField {
     void addRandomNumberWithoutCheck() {
         int emptyCellCount = getEmptyCellCount();
         if (emptyCellCount > 0) {
-            int emptyCell = random.nextInt(emptyCellCount);
-            long value = (random.nextInt(10) == 0) ? 2l : 1l;
+            int emptyCell = GameField.random.nextInt(emptyCellCount);
+            long value = (GameField.random.nextInt(10) == 0) ? 2l : 1l;
             setEmptyCellValue(emptyCell, value);
         }
     }
@@ -378,7 +377,6 @@ public class GameField {
             if (allowed[0] && allowed[1]) {
                 return 0;
             }
-            int iMask = 0;
             for (int i = 0; i < 2; i++) {
                 for (int j = 0; j < (allowed[i]? 2 : 1); j++) {
                     long mask = GameField.getTrapPositionsMask((i == 0) ? lines : swap, j == 0);

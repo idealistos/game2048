@@ -107,14 +107,14 @@ public class Main {
 
     @SuppressWarnings("unused")
     public static void main(String[] args) {
-        int mode = 3;
+        int mode = 4;
         // if (true) {
         if (mode == 0) {
             new Window();
         } else if (mode == 1) {
             Options options = new Options();
             Solver solver = new FittedPolySolver(options, true);
-            FieldSaver saver = null; // new FieldSaver("pos.1-50", true, false);
+            FieldSaver saver = new FieldSaver("pos.1p3m5-50", true, false);
             for (int i = 0; i < 14; i++) {
                 System.out.println("Average: " + String.format("%.2f", solver.getQuality(options, 1 << i, saver)));
             }
@@ -146,14 +146,16 @@ public class Main {
                     solver.getQuality(options1, 5000, new FieldSaver("", true, false))));
             solver.saveCache();
         } else if (mode == 4) {
-            List<Entry<Long, Integer>> positions = new FieldSaver("pos.1-50.1", false, true).loadPositions();
-            Map<Long, List<Double>> features = positions.stream()
-                    .map(x -> new AbstractMap.SimpleEntry<>(x.getKey(), new GameField(x.getKey()).getFeatures()))
-                    .collect(Collectors.toMap(Entry::getKey, Entry::getValue, (x1, x2) -> x1));
-            new Classifier(10, "model-50.10.top", 0.5, Classifier.Mode.TOP_ONLY).trainModel(positions, features);
-            new Classifier(5, "model-50.5.top", 0.3, Classifier.Mode.TOP_ONLY).trainModel(positions, features);
-            new Classifier(10, "model-50.10.fair", 0.5, Classifier.Mode.FAIR).trainModel(positions, features);
-            new Classifier(5, "model-50.5.fair", 0.3, Classifier.Mode.FAIR).trainModel(positions, features);
+            InputPositions usedPositions = new InputPositions("pos.1p3m5-50.1.part1");
+            InputPositions evaluationPositions = new InputPositions("pos.1p3m5-50.1.part2");
+
+            // new Classifier(10, "model-50.10.top", 0.5, Classifier.Mode.TOP_ONLY).trainModel(positions, features);
+            // new Classifier(5, "model-50.5.top", 0.3, Classifier.Mode.TOP_ONLY).trainModel(positions, features);
+            for (int d : new int[] { 1, 2, 3, 4, 5, 8 }) {
+                new Classifier(20, "model-50d" + d + ".10.fair", 0.5, Classifier.Mode.FAIR, d).trainModel(usedPositions, evaluationPositions);
+                new Classifier(10, "model-50d" + d + ".10.fair", 0.5, Classifier.Mode.FAIR, d).trainModel(usedPositions, evaluationPositions);
+                new Classifier(5, "model-50d" + d + ".5.fair", 0.3, Classifier.Mode.FAIR, d).trainModel(usedPositions, evaluationPositions);
+            }
         } else if (mode == 5) {
             FieldSaver saver = new FieldSaver("d:\\programming\\java\\game2048\\saved.0", false, false);
             List<Entry<Long, Integer>> positions = saver.loadPositions();
@@ -163,6 +165,15 @@ public class Main {
             Map<Long, Double> predict1 = Classifier.predict(new Classifier("model.5").loadModel(), features);
             Map<Long, Double> predict2 = Classifier.predict(new Classifier("model.10").loadModel(), features);
             saver.savePositionsWithValues(predict1, predict2);
+        } else if (mode == 6) {
+            String[] models = { "model.10", "model.5", "model-50.10", "model-50.10.top", "model-50.5", "model-50.5.fair", "model-50.5.top" };
+            String[] inputs = { "pos.1-50.1", "pos.1p3m5-50.1" };
+            // String[] inputs = { "pos.1-50.0", "pos.1p3m5-50.0" };
+            for (String model : models) {
+                for (String input : inputs) {
+                    new Classifier(model).findThreshold(input);
+                }
+            }
         }
     }
 }

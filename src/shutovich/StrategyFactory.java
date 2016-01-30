@@ -25,6 +25,8 @@ public class StrategyFactory {
                     new double[] { 1.0, options.closeFallbackWeight}, options);
         } else if (mode == 5) {
             return new IncreasedDepthFallbackStrategy("model-50.10.top", options, 3);
+        } else if (mode == 6) {
+            return new IncreasedDepthFallbackStrategy("model-50.5.fair", options, 3);
         } else {
             return null;
         }

@@ -5,11 +5,11 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
-import java.util.AbstractMap.SimpleEntry;
+import java.nio.file.Files;
 import java.util.AbstractMap;
+import java.util.AbstractMap.SimpleEntry;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
@@ -17,8 +17,6 @@ import java.util.Map.Entry;
 import java.util.Random;
 import java.util.Set;
 import java.util.function.Function;
-import java.util.function.IntPredicate;
-import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -44,21 +42,22 @@ public class Classifier {
     List<Entry<String, Object>> boosterParameters = new ArrayList<Entry<String, Object>>() {
         {
             add(new SimpleEntry<>("eta", 1.0));
-            add(new SimpleEntry<>("max_depth", 5));
             add(new SimpleEntry<>("silent", 1));
             add(new SimpleEntry<>("objective", "binary:logistic"));
+            add(new SimpleEntry<>("subsample", 0.5));
         }
     };
 
-    Classifier(int lastTurns, String fileName, double defaultThreshold, Mode mode) {
+    Classifier(int lastTurns, String fileName, double defaultThreshold, Mode mode, int depth) {
         this.lastTurns = lastTurns;
         this.fileName = fileName;
         this.defaultThreshold = defaultThreshold;
         this.mode = mode;
+        boosterParameters.add(new SimpleEntry<>("max_depth", depth));
     }
 
     Classifier(String fileName) {
-        this(-1, fileName, 0.0, Mode.FAIR);
+        this(-1, fileName, 0.0, Mode.FAIR, 0);
     }
 
     static DMatrix getMatrix(List<List<Double>> features) throws XGBoostError {
@@ -75,13 +74,26 @@ public class Classifier {
         return new DMatrix(data, features.size(), columnCount);
     }
     
-    static DMatrix getMatrix(List<Entry<Long, Integer>> positions, Map<Long, List<Double>> features,
-                             List<Integer> indices, int lastTurns) throws XGBoostError {
-        List<List<Double>> featuresList = indices.stream().map(i -> features.get(positions.get(i).getKey())).collect(Collectors.toList());
-        float[] labels = ArrayUtils.toPrimitive(indices.stream().map(i -> (positions.get(i).getValue() < lastTurns)? 1.0f : 0.0f)
-                .collect(Collectors.toList()).toArray(new Float[0]));
+    static DMatrix getMatrix(InputPositions inputPositions, List<Integer> indices, int lastTurns) throws XGBoostError {
+        List<List<Double>> featuresList;
+        if (indices == null) {
+            featuresList = inputPositions.positions.stream()
+                    .map(x -> inputPositions.features.get(x.getKey())).collect(Collectors.toList());
+        } else {
+            featuresList = indices.stream().map(i -> inputPositions.features.get(inputPositions.positions.get(i).getKey())).collect(Collectors.toList());
+        }            
         DMatrix matrix = Classifier.getMatrix(featuresList);
-        matrix.setLabel(labels);
+        if (lastTurns >= 0) {
+            float[] labels;
+            if (indices == null) {
+                labels = ArrayUtils.toPrimitive(inputPositions.positions.stream().map(x -> (x.getValue() < lastTurns)? 1.0f : 0.0f)
+                        .collect(Collectors.toList()).toArray(new Float[0]));
+            } else {
+                labels = ArrayUtils.toPrimitive(indices.stream().map(i -> (inputPositions.positions.get(i).getValue() < lastTurns)? 1.0f : 0.0f)
+                        .collect(Collectors.toList()).toArray(new Float[0]));
+            }
+            matrix.setLabel(labels);
+        }
         return matrix;
     }
 
@@ -140,9 +152,9 @@ public class Classifier {
 
     static void checkPredictLowFP(float[][] predicts, float[] testLabels) {
         assert(predicts.length == testLabels.length);
-        double[] safePredicts = IntStream.range(0, predicts.length).filter(i -> testLabels[i] == 0.0)
-                .mapToDouble(i -> predicts[i][0]).sorted().toArray();
-        double threshold = safePredicts[95 * safePredicts.length / 100];
+        // double[] safePredicts = IntStream.range(0, predicts.length).filter(i -> testLabels[i] == 0.0)
+        //        .mapToDouble(i -> predicts[i][0]).sorted().toArray();
+        // double threshold = safePredicts[95 * safePredicts.length / 100];
         // Classifier.getFMeasure(predicts, testLabels, threshold, testLabels.length - safePredicts.length);
     }
 
@@ -175,54 +187,106 @@ public class Classifier {
         }
     }
     
-    void trainModel(List<Entry<Long, Integer>> positions, Map<Long, List<Double>> features) {
-        int trainLinesCount = 1000000;
-        int testLinesCount = 200000;
-        Random random = new Random(2l);
-        double pTrain = trainLinesCount / (positions.size() + 0.0);
-        double pTest = testLinesCount / (positions.size() - trainLinesCount + 0.0);
-        double averageFMeasure = 0.0;
-        for (int i = 0; i < 5; i++) {
-            System.out.println("Try " + i + " for lastTurns = " + lastTurns);
-            Function<Integer, Double> probabilityFunction = (mode == Mode.FAIR)?
-                    (j -> (positions.get(j).getValue() < FieldSaver.lastCount)? FieldSaver.p : 1.0)
-                    : (j -> (positions.get(j).getValue() < FieldSaver.lastCount)? 1.0 : 0.0);
-            List<Integer> trainIndices = IntStream.range(0, positions.size())
-                        .filter(j -> random.nextDouble() < pTrain * probabilityFunction.apply(j))
-                        .boxed().collect(Collectors.toList());
-            Set<Integer> trainIndexSet = new HashSet<>(trainIndices);
-            List<Integer> testIndices = IntStream.range(0, positions.size())
-                        .filter(j -> !trainIndexSet.contains(j) && random.nextDouble() < pTest * probabilityFunction.apply(j))
-                        .boxed().collect(Collectors.toList());
-            List<Integer> noTrainIndices = IntStream.range(0, positions.size()).filter(x -> !trainIndexSet.contains(x))
-                    .boxed().collect(Collectors.toList());
-            try {
-                DMatrix train = Classifier.getMatrix(positions, features, trainIndices, lastTurns);
-                DMatrix test = Classifier.getMatrix(positions, features, testIndices, lastTurns);
-
-                System.out.println("Train: " + trainIndices.size() + ", test: " + testIndices.size() + ", no train: " + noTrainIndices.size());
-                Booster booster = Trainer.train(boosterParameters, train, 500,
-                        Arrays.asList(new SimpleEntry<>("train", train), new SimpleEntry<>("test", test)), null, null);
-                System.out.println("Trained");
-                DMatrix noTrain = Classifier.getMatrix(positions, features, noTrainIndices, lastTurns);
-                float[][] predicts = booster.predict(noTrain);
-                float[] noTrainLabels = noTrain.getLabel();
-                List<Integer> noTrainTurnsLeft = noTrainIndices.stream().map(j -> positions.get(j).getValue()).collect(Collectors.toList()); 
-//                Classifier.checkPredictLowFP(predicts, noTrainLabels, noTrainTurnsLeft, Mode.FAIR);
-                Classifier.checkPredictLowTN(predicts, noTrainLabels, noTrainTurnsLeft, Mode.FAIR);
-                Classifier.checkPredictLowTN(predicts, noTrainLabels, noTrainTurnsLeft, Mode.TOP_ONLY);
-                Classifier.saveHistogram(predicts, noTrainTurnsLeft, "hist" + lastTurns + "." + i);
-                int unsafeCount = (int) IntStream.range(0, noTrainLabels.length).filter(j -> noTrainLabels[j] == 1.0f).count();
-                double fMeasure = getFMeasure(predicts, noTrainLabels, noTrainTurnsLeft, defaultThreshold, mode);
-                averageFMeasure += fMeasure / 5;
-                if (i == 0) {
-                    booster.saveModel(fileName);
-                }
-            } catch (XGBoostError e) {
-                e.printStackTrace();
+    static double getThresholdForMarkedPercent(float[][] predicts, List<Integer> turnsLeft, double percent) {
+        List<Double> topPredicts = IntStream.range(0, turnsLeft.size()).filter(j -> turnsLeft.get(j) < FieldSaver.lastCount)
+                .mapToObj(j -> new Double(-predicts[j][0])).sorted().collect(Collectors.toList());
+        List<Double> nonTopPredicts = IntStream.range(0, turnsLeft.size()).filter(j -> turnsLeft.get(j) >= FieldSaver.lastCount)
+                .mapToObj(j -> new Double(-predicts[j][0])).sorted().collect(Collectors.toList());
+        double countToReach = percent * (topPredicts.size() * FieldSaver.p + nonTopPredicts.size());
+        int iTop = 0;
+        int iNonTop = 0;
+        while (iTop < topPredicts.size() || iNonTop < nonTopPredicts.size()) {
+            if (iTop < topPredicts.size() && topPredicts.get(iTop) < nonTopPredicts.get(iNonTop)) {
+                iTop++;
+            } else {
+                iNonTop++;
+            }
+            if (iTop * FieldSaver.p + iNonTop >= countToReach) {
+                // System.out.println("Top " + iTop + " of " + topPredicts.size());
+                // System.out.println("Non-top " + iNonTop + " of " + nonTopPredicts.size());
+                return Math.min((iTop < topPredicts.size())? -topPredicts.get(iTop) : 1e100,
+                        (iNonTop < nonTopPredicts.size())? -nonTopPredicts.get(iNonTop) : 1e100);
             }
         }
-        System.out.println("Average fMeasure for " + defaultThreshold + ": " + averageFMeasure);
+        return 1.0;
+    }
+    
+    static double getMissedForMarkedPercent(float[][] predicts, List<Integer> turnsLeft, double threshold) {
+        int markedTopCount = (int) IntStream.range(0, turnsLeft.size())
+                .filter(j -> turnsLeft.get(j) < FieldSaver.lastCount && predicts[j][0] >= threshold).count();
+        int markedNonTopCount = (int) IntStream.range(0, turnsLeft.size())
+                .filter(j -> turnsLeft.get(j) >= FieldSaver.lastCount && predicts[j][0] >= threshold).count();
+        int topCount = (int) IntStream.range(0, turnsLeft.size())
+                .filter(j -> turnsLeft.get(j) < FieldSaver.lastCount).count();
+        int nonTopCount = (int) IntStream.range(0, turnsLeft.size())
+                .filter(j -> turnsLeft.get(j) >= FieldSaver.lastCount).count();
+        System.out.println("Top: marked " + markedTopCount + " of " + topCount);
+        System.out.println("Non-top: marked " + markedNonTopCount + " of " + nonTopCount);
+        double missedOverall = 0.0;
+        for (int top : new int[] { 5, 10, 20 }) {
+            int unsafeCount = (int) turnsLeft.stream().filter(x -> x < top).count();
+            int markedUnsafeCount = (int) IntStream.range(0, turnsLeft.size()).filter(j -> turnsLeft.get(j) < top && predicts[j][0] >= threshold).count();
+            System.out.println("Top " + top + ": unsafe: " + unsafeCount + " missed: " + (unsafeCount - markedUnsafeCount));
+            missedOverall += 100.0 * (unsafeCount - markedUnsafeCount) / ((unsafeCount + 0.0) * top);
+        }
+        System.out.println("Overall missed percent: " + missedOverall);
+        return missedOverall;
+    }
+
+    void saveThreshold(double threshold) {
+        try {
+            Files.write(new File(fileName + ".threshold").toPath(), Arrays.asList("" + threshold));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    void trainModel(InputPositions usedPositions, InputPositions evaluationPositions) {
+        int trainLinesCount = 1000000;
+        int testLinesCount = 200000;
+        double pTrain = trainLinesCount / (usedPositions.positions.size() + 0.0);
+        double pTest = testLinesCount / (usedPositions.positions.size() - trainLinesCount + 0.0);
+        // double averageFMeasure = 0.0;
+        try {
+            DMatrix evaluation = Classifier.getMatrix(evaluationPositions, null, lastTurns);
+            for (int i = 0; i < 1; i++) {
+                System.out.println("Try " + i + " for lastTurns = " + lastTurns);
+                List<Integer> trainIndices = usedPositions.getRandomTrainIndices(i, mode, pTrain, pTest);
+                List<Integer> testIndices = usedPositions.getRandomTestIndices(i, mode, pTrain, pTest);
+                DMatrix train = Classifier.getMatrix(usedPositions, trainIndices, lastTurns);
+                DMatrix test = Classifier.getMatrix(usedPositions, testIndices, lastTurns);
+
+                double minMissedOverall = 1e100;
+                int bestRounds = 0;
+                for (int rounds = 5; rounds <= 640; rounds *= 2) {
+                    System.out.println("Train: " + trainIndices.size() + ", test: " + testIndices.size());
+                    Booster booster = Trainer.train(boosterParameters, train, rounds,
+                            Arrays.asList(new SimpleEntry<>("train", train), new SimpleEntry<>("test", test)), null, null);
+                    System.out.println("Trained");
+                    float[][] predicts = booster.predict(evaluation);
+                    List<Integer> evaluationTurnsLeft = evaluationPositions.getTurnsLeft(null); 
+    //                Classifier.checkPredictLowFP(predicts, noTrainLabels, noTrainTurnsLeft, Mode.FAIR);
+    //                Classifier.checkPredictLowTN(predicts, noTrainLabels, noTrainTurnsLeft, Mode.FAIR);
+    //                Classifier.checkPredictLowTN(predicts, noTrainLabels, noTrainTurnsLeft, Mode.TOP_ONLY);
+    //                Classifier.saveHistogram(predicts, noTrainTurnsLeft, "hist" + lastTurns + "." + i);
+                    double threshold = Classifier.getThresholdForMarkedPercent(predicts, evaluationTurnsLeft, 0.1);
+                    double missedOverall = Classifier.getMissedForMarkedPercent(predicts, evaluationTurnsLeft, threshold);
+    //                double fMeasure = getFMeasure(predicts, noTrainLabels, noTrainTurnsLeft, defaultThreshold, mode);
+    //                averageFMeasure += fMeasure / 5;
+                    if (missedOverall < minMissedOverall) {
+                        minMissedOverall = missedOverall;
+                        bestRounds = rounds;
+                        booster.saveModel(fileName);
+                        saveThreshold(threshold);
+                    }
+                }
+                System.out.println("Best rounds " + bestRounds + " for missed overall " + minMissedOverall);
+            }
+        } catch (XGBoostError e) {
+            e.printStackTrace();
+        }
+            
+//        System.out.println("Average fMeasure for " + defaultThreshold + ": " + averageFMeasure);
     }
 
     Booster loadModel() {
@@ -231,6 +295,23 @@ public class Classifier {
         } catch (XGBoostError e) {
             e.printStackTrace();
             return null;
+        }
+    }
+
+    void findThreshold(String inputFileName) {
+        InputPositions inputPositions = new InputPositions(inputFileName);
+        Booster booster = loadModel();
+        try {
+            System.out.println("Calculating predict");
+            DMatrix complete = Classifier.getMatrix(inputPositions, null, -1);
+            float[][] predicts = booster.predict(complete);
+            List<Integer> turnsLeft = inputPositions.getTurnsLeft(null);
+            double threshold = Classifier.getThresholdForMarkedPercent(predicts, turnsLeft, 0.1);
+            saveThreshold(threshold);
+            System.out.println("Model " + fileName + ", input " + inputFileName + ": threshold " + threshold);
+            Classifier.getMissedForMarkedPercent(predicts, turnsLeft, threshold);
+        } catch (XGBoostError e) {
+            e.printStackTrace();
         }
     }
 

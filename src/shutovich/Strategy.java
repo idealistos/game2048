@@ -21,12 +21,7 @@ public abstract class Strategy {
 
     abstract Action chooseOptimalAction();
 
-    void nextTurn1() {
-        field.addRandomNumber();
-        turn++;
-    }
-
-    boolean nextTurn2() {
+    boolean nextTurn() {
         GameField oldField = null;
         if (field.debug || fallbackStrategy != null) {
             oldField = new GameField(field);
@@ -48,11 +43,6 @@ public abstract class Strategy {
         return (direction != null);
     }
 
-    boolean nextTurn() {
-        nextTurn1();
-        return nextTurn2();
-    }
-
     int simulate(FieldSaver saver) {
         field.reset();
         turn = 0;
@@ -60,6 +50,8 @@ public abstract class Strategy {
             saver.reset();
         }
         while (true) {
+            field.addRandomNumber();
+            turn++;
             if (saver != null) {
                 saver.checkAndWriteField(field, turn);
             }

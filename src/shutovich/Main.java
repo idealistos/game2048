@@ -1,5 +1,8 @@
 package shutovich;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
@@ -104,9 +107,13 @@ public class Main {
         }
     }
 
+    static Logger logger = LogManager.getLogger(Main.class);
+
 
     @SuppressWarnings("unused")
     public static void main(String[] args) {
+        Main.logger.info("\n\n");
+
         int mode = 4;
         // if (true) {
         if (mode == 0) {
@@ -146,15 +153,15 @@ public class Main {
                     solver.getQuality(options1, 5000, new FieldSaver("", true, false))));
             solver.saveCache();
         } else if (mode == 4) {
-            InputPositions usedPositions = new InputPositions("pos.1p3m5-50.1.part1");
-            InputPositions evaluationPositions = new InputPositions("pos.1p3m5-50.1.part2");
+            InputPositions usedPositions = new InputPositions("data/input/pos.1p3m5-50.1.part1");
+            InputPositions evaluationPositions = new InputPositions("data/input/pos.1p3m5-50.1.part2");
 
             // new Classifier(10, "model-50.10.top", 0.5, Classifier.Mode.TOP_ONLY).trainModel(positions, features);
             // new Classifier(5, "model-50.5.top", 0.3, Classifier.Mode.TOP_ONLY).trainModel(positions, features);
             for (int d : new int[] { 1, 2, 3, 4, 5, 8 }) {
-                new Classifier(20, "model-50d" + d + ".10.fair", 0.5, Classifier.Mode.FAIR, d).trainModel(usedPositions, evaluationPositions);
-                new Classifier(10, "model-50d" + d + ".10.fair", 0.5, Classifier.Mode.FAIR, d).trainModel(usedPositions, evaluationPositions);
-                new Classifier(5, "model-50d" + d + ".5.fair", 0.3, Classifier.Mode.FAIR, d).trainModel(usedPositions, evaluationPositions);
+                new Classifier(20, "data/models/model-50d" + d + "auc2.20.fair", 0.5, Classifier.Mode.FAIR, d).trainModel(usedPositions, evaluationPositions);
+                new Classifier(10, "data/models/model-50d" + d + "auc2.10.fair", 0.5, Classifier.Mode.FAIR, d).trainModel(usedPositions, evaluationPositions);
+                new Classifier(5, "data/models/model-50d" + d + "auc2.5.fair", 0.3, Classifier.Mode.FAIR, d).trainModel(usedPositions, evaluationPositions);
             }
         } else if (mode == 5) {
             FieldSaver saver = new FieldSaver("d:\\programming\\java\\game2048\\saved.0", false, false);

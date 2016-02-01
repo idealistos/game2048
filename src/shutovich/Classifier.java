@@ -6,16 +6,9 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
 import java.nio.file.Files;
-import java.util.AbstractMap;
+import java.util.*;
 import java.util.AbstractMap.SimpleEntry;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
 import java.util.Map.Entry;
-import java.util.Random;
-import java.util.Set;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -39,12 +32,13 @@ public class Classifier {
     String fileName;
     double defaultThreshold;
     Mode mode;
-    List<Entry<String, Object>> boosterParameters = new ArrayList<Entry<String, Object>>() {
+    Map<String, Object> boosterParameters = new HashMap<String, Object>() {
         {
-            add(new SimpleEntry<>("eta", 1.0));
-            add(new SimpleEntry<>("silent", 1));
-            add(new SimpleEntry<>("objective", "binary:logistic"));
-            add(new SimpleEntry<>("subsample", 0.5));
+            put("eta", 0.3);
+            put("silent", 1);
+            put("objective", "binary:logistic");
+            put("subsample", 0.8);
+            put("eval_metric", "auc");
         }
     };
 
@@ -53,7 +47,7 @@ public class Classifier {
         this.fileName = fileName;
         this.defaultThreshold = defaultThreshold;
         this.mode = mode;
-        boosterParameters.add(new SimpleEntry<>("max_depth", depth));
+        boosterParameters.put("max_depth", depth);
     }
 
     Classifier(String fileName) {
@@ -220,16 +214,16 @@ public class Classifier {
                 .filter(j -> turnsLeft.get(j) < FieldSaver.lastCount).count();
         int nonTopCount = (int) IntStream.range(0, turnsLeft.size())
                 .filter(j -> turnsLeft.get(j) >= FieldSaver.lastCount).count();
-        System.out.println("Top: marked " + markedTopCount + " of " + topCount);
-        System.out.println("Non-top: marked " + markedNonTopCount + " of " + nonTopCount);
+        Main.logger.info("Top: marked " + markedTopCount + " of " + topCount);
+        Main.logger.info("Non-top: marked " + markedNonTopCount + " of " + nonTopCount);
         double missedOverall = 0.0;
         for (int top : new int[] { 5, 10, 20 }) {
             int unsafeCount = (int) turnsLeft.stream().filter(x -> x < top).count();
             int markedUnsafeCount = (int) IntStream.range(0, turnsLeft.size()).filter(j -> turnsLeft.get(j) < top && predicts[j][0] >= threshold).count();
-            System.out.println("Top " + top + ": unsafe: " + unsafeCount + " missed: " + (unsafeCount - markedUnsafeCount));
+            Main.logger.info("Top " + top + ": unsafe: " + unsafeCount + " missed: " + (unsafeCount - markedUnsafeCount));
             missedOverall += 100.0 * (unsafeCount - markedUnsafeCount) / ((unsafeCount + 0.0) * top);
         }
-        System.out.println("Overall missed percent: " + missedOverall);
+        Main.logger.info("Overall missed percent: " + missedOverall);
         return missedOverall;
     }
 
@@ -242,27 +236,22 @@ public class Classifier {
     }
     
     void trainModel(InputPositions usedPositions, InputPositions evaluationPositions) {
-        int trainLinesCount = 1000000;
-        int testLinesCount = 200000;
-        double pTrain = trainLinesCount / (usedPositions.positions.size() + 0.0);
-        double pTest = testLinesCount / (usedPositions.positions.size() - trainLinesCount + 0.0);
-        // double averageFMeasure = 0.0;
         try {
             DMatrix evaluation = Classifier.getMatrix(evaluationPositions, null, lastTurns);
             for (int i = 0; i < 1; i++) {
-                System.out.println("Try " + i + " for lastTurns = " + lastTurns);
-                List<Integer> trainIndices = usedPositions.getRandomTrainIndices(i, mode, pTrain, pTest);
-                List<Integer> testIndices = usedPositions.getRandomTestIndices(i, mode, pTrain, pTest);
+                List<Integer> trainIndices = usedPositions.getRandomTrainIndices(i, mode, 1.0, 0.0);
+                List<Integer> testIndices = evaluationPositions.getRandomTrainIndices(i, mode, 0.2, 0.0);
                 DMatrix train = Classifier.getMatrix(usedPositions, trainIndices, lastTurns);
-                DMatrix test = Classifier.getMatrix(usedPositions, testIndices, lastTurns);
+                DMatrix test = Classifier.getMatrix(evaluationPositions, testIndices, lastTurns);
 
                 double minMissedOverall = 1e100;
                 int bestRounds = 0;
-                for (int rounds = 5; rounds <= 640; rounds *= 2) {
-                    System.out.println("Train: " + trainIndices.size() + ", test: " + testIndices.size());
-                    Booster booster = Trainer.train(boosterParameters, train, rounds,
+                for (int rounds = 5; rounds <= 320; rounds *= 4) {
+                    Main.logger.info(toString() + ", rounds = " + rounds);
+                    Main.logger.debug("Train: " + trainIndices.size() + ", test: " + testIndices.size());
+                    Booster booster = Trainer.train(boosterParameters.entrySet(), train, rounds,
                             Arrays.asList(new SimpleEntry<>("train", train), new SimpleEntry<>("test", test)), null, null);
-                    System.out.println("Trained");
+                    Main.logger.debug("Trained");
                     float[][] predicts = booster.predict(evaluation);
                     List<Integer> evaluationTurnsLeft = evaluationPositions.getTurnsLeft(null); 
     //                Classifier.checkPredictLowFP(predicts, noTrainLabels, noTrainTurnsLeft, Mode.FAIR);
@@ -291,7 +280,7 @@ public class Classifier {
 
     Booster loadModel() {
         try {
-            return new Booster(boosterParameters, fileName);
+            return new Booster(boosterParameters.entrySet(), fileName);
         } catch (XGBoostError e) {
             e.printStackTrace();
             return null;
@@ -313,6 +302,12 @@ public class Classifier {
         } catch (XGBoostError e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public String toString() {
+        return "Model: " + fileName + ", depth: " + boosterParameters.get("max_depth")
+                + ", lastTurns: " + lastTurns;
     }
 
 }

@@ -22,13 +22,14 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
-        <module name="Game2048" />
+        <module name="game2048" />
         <module name="xgboost4j" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel target="1.8">
       <module name="Game2048" target="1.8" />
-      <module name="xgboost4j" target="1.8" />
+      <module name="game2048" target="1.8" />
+      <module name="xgboost4j" target="1.7" />
     </bytecodeTargetLevel>
   </component>
 </project>

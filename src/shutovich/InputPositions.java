@@ -42,12 +42,12 @@ public class InputPositions {
     Random random = new Random();
 
     InputPositions(String inputFileName) {
-        System.out.println("Loading " + inputFileName);
-        positions = new FieldSaver("pos.1p3m5-50.1.part1", false, true).loadPositions();
+        Main.logger.debug("Loading " + inputFileName);
+        positions = new FieldSaver(inputFileName, false, true).loadPositions();
         features = positions.stream()
                 .map(x -> new AbstractMap.SimpleEntry<>(x.getKey(), new GameField(x.getKey()).getFeatures()))
                 .collect(Collectors.toMap(Entry::getKey, Entry::getValue, (x1, x2) -> x1));
-        System.out.println("Loaded " + inputFileName);
+        Main.logger.debug("Loaded " + inputFileName);
     }
     
     List<Integer> getRandomTrainIndices(int iTry, Classifier.Mode mode, double pTrain, double pTest) {

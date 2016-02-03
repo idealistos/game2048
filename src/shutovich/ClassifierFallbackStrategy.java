@@ -18,7 +18,8 @@ public class ClassifierFallbackStrategy extends CheckingFallbackStrategy {
     boolean consider4s = false;
 
     ClassifierFallbackStrategy(String[] modelFileNames, double[] weights, Options options) {
-        super(options);
+        super(options, 0.0);
+        readThreshold(modelFileNames[0]);
         assert(modelFileNames.length == weights.length);
         models = new Booster[modelFileNames.length];
         for (int i = 0; i < modelFileNames.length; i++) {

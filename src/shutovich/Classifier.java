@@ -6,10 +6,13 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Writer;
 import java.nio.file.Files;
-import java.util.*;
 import java.util.AbstractMap.SimpleEntry;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Map.Entry;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -25,14 +28,14 @@ import org.dmlc.xgboost4j.util.XGBoostError;
 public class Classifier {
     
     enum Mode {
-        TOP_ONLY, FAIR;
+        TOP_ONLY, FAIR, EVEN;
     }
     
     int lastTurns;
     String fileName;
-    double defaultThreshold;
     Mode mode;
-    Map<String, Object> boosterParameters = new HashMap<String, Object>() {
+    boolean afterNewRandom;
+    Map<String, Object> binaryBoosterParameters = new HashMap<String, Object>() {
         {
             put("eta", 0.3);
             put("silent", 1);
@@ -41,17 +44,28 @@ public class Classifier {
             put("eval_metric", "auc");
         }
     };
+    Map<String, Object> regressionBoosterParameters = new HashMap<String, Object>() {
+        {
+            put("eta", 0.3);
+            put("silent", 1);
+            put("objective", "reg:logistic");
+            put("subsample", 0.8);
+            put("eval_metric", "rmse");
+        }
+    };
+    Map<String, Object> boosterParameters;
 
-    Classifier(int lastTurns, String fileName, double defaultThreshold, Mode mode, int depth) {
+    Classifier(int lastTurns, String fileName, Mode mode, int depth, boolean afterNewRandom) {
         this.lastTurns = lastTurns;
         this.fileName = fileName;
-        this.defaultThreshold = defaultThreshold;
         this.mode = mode;
+        this.afterNewRandom = afterNewRandom;
+        boosterParameters = (lastTurns >= 0)? binaryBoosterParameters : regressionBoosterParameters;
         boosterParameters.put("max_depth", depth);
     }
 
     Classifier(String fileName) {
-        this(-1, fileName, 0.0, Mode.FAIR, 0);
+        this(-1, fileName, Mode.FAIR, 0, false);
     }
 
     static DMatrix getMatrix(List<List<Double>> features) throws XGBoostError {
@@ -72,18 +86,31 @@ public class Classifier {
         List<List<Double>> featuresList;
         if (indices == null) {
             featuresList = inputPositions.positions.stream()
-                    .map(x -> inputPositions.features.get(x.getKey())).collect(Collectors.toList());
+                    .map(x -> inputPositions.features.get(x)).collect(Collectors.toList());
         } else {
-            featuresList = indices.stream().map(i -> inputPositions.features.get(inputPositions.positions.get(i).getKey())).collect(Collectors.toList());
+            featuresList = indices.stream()
+                    .map(i -> inputPositions.features.get(inputPositions.positions.get(i)))
+                    .collect(Collectors.toList());
         }            
         DMatrix matrix = Classifier.getMatrix(featuresList);
         if (lastTurns >= 0) {
             float[] labels;
             if (indices == null) {
-                labels = ArrayUtils.toPrimitive(inputPositions.positions.stream().map(x -> (x.getValue() < lastTurns)? 1.0f : 0.0f)
+                labels = ArrayUtils.toPrimitive(inputPositions.turnsLeft.stream().map(x -> (x < lastTurns)? 1.0f : 0.0f)
                         .collect(Collectors.toList()).toArray(new Float[0]));
             } else {
-                labels = ArrayUtils.toPrimitive(indices.stream().map(i -> (inputPositions.positions.get(i).getValue() < lastTurns)? 1.0f : 0.0f)
+                labels = ArrayUtils.toPrimitive(indices.stream().map(i -> (inputPositions.turnsLeft.get(i) < lastTurns)? 1.0f : 0.0f)
+                        .collect(Collectors.toList()).toArray(new Float[0]));
+            }
+            matrix.setLabel(labels);
+        } else if (inputPositions.measures != null) {
+            float[] labels;
+            if (indices == null) {
+                labels = ArrayUtils.toPrimitive(inputPositions.measures.stream()
+                        .collect(Collectors.toList()).toArray(new Float[0]));
+            } else {
+                labels = ArrayUtils.toPrimitive(indices.stream()
+                        .map(i -> new Float(inputPositions.measures.get(i)))
                         .collect(Collectors.toList()).toArray(new Float[0]));
             }
             matrix.setLabel(labels);
@@ -235,48 +262,63 @@ public class Classifier {
         }
     }
     
-    void trainModel(InputPositions usedPositions, InputPositions evaluationPositions) {
+    void trainModel(DMatrix train, DMatrix test, DMatrix evaluation, List<Integer> evaluationTurnsLeft) throws XGBoostError {
+        double minMissedOverall = 1e100;
+        int bestRounds = 0;
+        for (int rounds = 5; rounds <= 80; rounds *= 4) {
+            Main.logger.info(toString() + ", rounds = " + rounds);
+            Booster booster = Trainer.train(boosterParameters.entrySet(), train, rounds,
+                    Arrays.asList(new SimpleEntry<>("train", train), new SimpleEntry<>("test", test)), null, null);
+            Main.logger.debug("Trained");
+            float[][] predicts = booster.predict(evaluation);
+//                Classifier.checkPredictLowFP(predicts, noTrainLabels, noTrainTurnsLeft, Mode.FAIR);
+//                Classifier.checkPredictLowTN(predicts, noTrainLabels, noTrainTurnsLeft, Mode.FAIR);
+//                Classifier.checkPredictLowTN(predicts, noTrainLabels, noTrainTurnsLeft, Mode.TOP_ONLY);
+//                Classifier.saveHistogram(predicts, noTrainTurnsLeft, "hist" + lastTurns + "." + i);
+            double threshold = Classifier.getThresholdForMarkedPercent(predicts, evaluationTurnsLeft, 0.1);
+            double missedOverall = Classifier.getMissedForMarkedPercent(predicts, evaluationTurnsLeft, threshold);
+//                double fMeasure = getFMeasure(predicts, noTrainLabels, noTrainTurnsLeft, defaultThreshold, mode);
+//                averageFMeasure += fMeasure / 5;
+            if (missedOverall < minMissedOverall) {
+                minMissedOverall = missedOverall;
+                bestRounds = rounds;
+                booster.saveModel(fileName);
+                saveThreshold(threshold);
+            }
+        }
+        System.out.println("Best rounds " + bestRounds + " for missed overall " + minMissedOverall);
+    }
+    
+    void trainModel(InputPositions usedPositions, InputPositions evaluationPositions, boolean splitUsed) {
         try {
-            DMatrix evaluation = Classifier.getMatrix(evaluationPositions, null, lastTurns);
+            DMatrix evaluation = Classifier.getMatrix(evaluationPositions, null, -1);
             for (int i = 0; i < 1; i++) {
-                List<Integer> trainIndices = usedPositions.getRandomTrainIndices(i, mode, 1.0, 0.0);
-                List<Integer> testIndices = evaluationPositions.getRandomTrainIndices(i, mode, 0.2, 0.0);
-                DMatrix train = Classifier.getMatrix(usedPositions, trainIndices, lastTurns);
-                DMatrix test = Classifier.getMatrix(evaluationPositions, testIndices, lastTurns);
-
-                double minMissedOverall = 1e100;
-                int bestRounds = 0;
-                for (int rounds = 5; rounds <= 320; rounds *= 4) {
-                    Main.logger.info(toString() + ", rounds = " + rounds);
+                DMatrix train;
+                DMatrix test;
+                if (splitUsed) {
+                    List<Integer> trainIndices = usedPositions.getRandomTrainIndices(i, mode, 0.8, 1.0);
+                    List<Integer> testIndices = usedPositions.getRandomTestIndices(i, mode, 0.8, 1.0);
                     Main.logger.debug("Train: " + trainIndices.size() + ", test: " + testIndices.size());
-                    Booster booster = Trainer.train(boosterParameters.entrySet(), train, rounds,
-                            Arrays.asList(new SimpleEntry<>("train", train), new SimpleEntry<>("test", test)), null, null);
-                    Main.logger.debug("Trained");
-                    float[][] predicts = booster.predict(evaluation);
-                    List<Integer> evaluationTurnsLeft = evaluationPositions.getTurnsLeft(null); 
-    //                Classifier.checkPredictLowFP(predicts, noTrainLabels, noTrainTurnsLeft, Mode.FAIR);
-    //                Classifier.checkPredictLowTN(predicts, noTrainLabels, noTrainTurnsLeft, Mode.FAIR);
-    //                Classifier.checkPredictLowTN(predicts, noTrainLabels, noTrainTurnsLeft, Mode.TOP_ONLY);
-    //                Classifier.saveHistogram(predicts, noTrainTurnsLeft, "hist" + lastTurns + "." + i);
-                    double threshold = Classifier.getThresholdForMarkedPercent(predicts, evaluationTurnsLeft, 0.1);
-                    double missedOverall = Classifier.getMissedForMarkedPercent(predicts, evaluationTurnsLeft, threshold);
-    //                double fMeasure = getFMeasure(predicts, noTrainLabels, noTrainTurnsLeft, defaultThreshold, mode);
-    //                averageFMeasure += fMeasure / 5;
-                    if (missedOverall < minMissedOverall) {
-                        minMissedOverall = missedOverall;
-                        bestRounds = rounds;
-                        booster.saveModel(fileName);
-                        saveThreshold(threshold);
-                    }
+                    train = Classifier.getMatrix(usedPositions, trainIndices, lastTurns);
+                    test = Classifier.getMatrix(usedPositions, testIndices, lastTurns);
+                } else {
+                    List<Integer> trainIndices = IntStream.range(0, usedPositions.positions.size()).boxed().collect(Collectors.toList());
+                    List<Integer> testIndices = evaluationPositions.getRandomTrainIndices(i, mode, 0.5, 0.0);
+                    Main.logger.debug("Train: " + trainIndices.size() + ", test: " + testIndices.size());
+                    train = Classifier.getMatrix(usedPositions, trainIndices, lastTurns);
+                    test = Classifier.getMatrix(evaluationPositions, testIndices, lastTurns);
                 }
-                System.out.println("Best rounds " + bestRounds + " for missed overall " + minMissedOverall);
+                
+                List<Integer> evaluationTurnsLeft = evaluationPositions.getTurnsLeft(null);
+                trainModel(train, test, evaluation, evaluationTurnsLeft);
+
             }
         } catch (XGBoostError e) {
             e.printStackTrace();
         }
-            
-//        System.out.println("Average fMeasure for " + defaultThreshold + ": " + averageFMeasure);
     }
+    
+    
 
     Booster loadModel() {
         try {
@@ -288,7 +330,7 @@ public class Classifier {
     }
 
     void findThreshold(String inputFileName) {
-        InputPositions inputPositions = new InputPositions(inputFileName);
+        InputPositions inputPositions = new InputPositions(inputFileName, false, true);
         Booster booster = loadModel();
         try {
             System.out.println("Calculating predict");

@@ -437,6 +437,45 @@ public class GameField {
         }
         return count;
     }
+    
+    int addTouchingStats(int[] stats) {
+        // stats[0]: x / x, x <= 32
+        // stats[1]: x / x, x > 32
+        // stats[2]: 0 / 2
+        // stats[3]: 0 / 4
+        // stats[4]: x / y, x = 2 or 4, y > 32
+        // stats[5]: x / 2 * x, x <= 16
+        // stats[6]: x / 2 * x, x > 16
+        int p = 0;
+        long data = lines;
+        for (int y = 0; y < 8; y++) {
+            if (y == 4) {
+                p = 0;
+                data = swap;
+            }
+            long v = (data >>> p) & 0xFl;
+            for (int x = 1; x < 4; x++) {
+                p += 4;
+                long v1 = (data >>> p) & 0xFl;
+                if (v == v1) {
+                    if (v > 0) {
+                        stats[(v >= 5)? 1 : 0]++;
+                    }
+                } else if (v + v1 == 1) {
+                    stats[2]++;
+                } else if (v + v1 == 2) {
+                    stats[3]++;
+                } else if (((v == 1 || v == 2) && v1 > 5) || ((v1 == 1 || v1 == 2) && v > 5)) {
+                    stats[4]++;
+                } else if ((v == (v1 << 1)) || (v1 == (v << 1))) {
+                    stats[(v < 4 || v1 < 4)? 5 : 6]++;
+                }
+                v = v1;
+            }
+            p += 4;
+        }
+        return 7;
+    }
 
     void load(int[][] data) {
         lines = 0;
@@ -451,7 +490,7 @@ public class GameField {
     }
 
     List<Double> getFeatures() {
-        double[] penalties = { getRightDownPenalty(), getTrapPenalty(),
+        double[] penalties = { getRightDownPenalty() * 0.01, getTrapPenalty(),
                 getEmptyCellCount() * 0.1, getLargeNumbersCount() * 0.1 };
         List<Double> features = new ArrayList<>();
         features.addAll(DoubleStream.of(penalties).mapToObj(x -> new Double(x)).collect(Collectors.toList()));
@@ -460,6 +499,11 @@ public class GameField {
             if (i != 0) {
                 features.add(0.1 * getCellValue(3, 3 - i));
             }
+        }
+        int[] touchingStats = new int[10];
+        int count = addTouchingStats(touchingStats);
+        for (int i = 0; i < count; i++) {
+            features.add(touchingStats[i] * 0.2);
         }
         features.add(getSum() * 0.01);
         return features;

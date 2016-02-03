@@ -2267,3 +2267,995 @@ Top 10: unsafe: 43530 missed: 5476
 Top 20: unsafe: 87060 missed: 20022
 Overall missed percent: 3.848725017229497
 Model: data/models/model-50d5auc2.5.fair, depth: 5, lastTurns: 5, rounds = 320
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Model: data/models/model-rec1-d2-auc2.10.fair, depth: 2, lastTurns: 10, rounds = 5
+Top: marked 8164 of 8164
+Non-top: marked 174694 of 174694
+Top 5: unsafe: 769 missed: 0
+Top 10: unsafe: 1562 missed: 0
+Top 20: unsafe: 3218 missed: 0
+Overall missed percent: 0.0
+Model: data/models/model-rec1-d2-auc2.10.fair, depth: 2, lastTurns: 10, rounds = 20
+Top: marked 4884 of 8164
+Non-top: marked 17622 of 174694
+Top 5: unsafe: 769 missed: 36
+Top 10: unsafe: 1562 missed: 130
+Top 20: unsafe: 3218 missed: 508
+Overall missed percent: 2.5578573400051994
+Model: data/models/model-rec1-d2-auc2.10.fair, depth: 2, lastTurns: 10, rounds = 80
+
+
+
+
+
+
+
+
+
+
+
+
+Model: data/models/model-rec1-d2-auc2.10.fair, depth: 2, lastTurns: 10, rounds = 5
+Top: marked 235165 of 418233
+Non-top: marked 39164 of 438473
+Top 5: unsafe: 41825 missed: 2032
+Top 10: unsafe: 83650 missed: 8834
+Top 20: unsafe: 167300 missed: 33324
+Overall missed percent: 3.023670053795577
+Model: data/models/model-rec1-d2-auc2.10.fair, depth: 2, lastTurns: 10, rounds = 20
+Top: marked 237634 of 418233
+Non-top: marked 34626 of 438473
+Top 5: unsafe: 41825 missed: 1300
+Top 10: unsafe: 83650 missed: 6749
+Top 20: unsafe: 167300 missed: 31636
+Overall missed percent: 2.3739390316796176
+Model: data/models/model-rec1-d2-auc2.10.fair, depth: 2, lastTurns: 10, rounds = 80
+Top: marked 257198 of 418233
+Non-top: marked 33080 of 438473
+Top 5: unsafe: 41825 missed: 933
+Top 10: unsafe: 83650 missed: 4851
+Top 20: unsafe: 167300 missed: 22741
+Overall missed percent: 1.7057083084279738
+Model: data/models/model-rec1-d2-auc2.10.fair, depth: 2, lastTurns: 10, rounds = 320
+Top: marked 263209 of 418233
+Non-top: marked 32780 of 438473
+Top 5: unsafe: 41825 missed: 920
+Top 10: unsafe: 83650 missed: 4526
+Top 20: unsafe: 167300 missed: 20666
+Overall missed percent: 1.5986252241482366
+Model: data/models/model-rec1-d3-auc2.10.fair, depth: 3, lastTurns: 10, rounds = 5
+Top: marked 236328 of 418233
+Non-top: marked 39349 of 438473
+Top 5: unsafe: 41825 missed: 1979
+Top 10: unsafe: 83650 missed: 8574
+Top 20: unsafe: 167300 missed: 32754
+Overall missed percent: 2.9502092050209203
+Model: data/models/model-rec1-d3-auc2.10.fair, depth: 3, lastTurns: 10, rounds = 20
+Top: marked 239734 of 418233
+Non-top: marked 33956 of 438473
+Top 5: unsafe: 41825 missed: 1143
+Top 10: unsafe: 83650 missed: 6132
+Top 20: unsafe: 167300 missed: 29662
+Overall missed percent: 2.1661087866108786
+Model: data/models/model-rec1-d3-auc2.10.fair, depth: 3, lastTurns: 10, rounds = 80
+Top: marked 260747 of 418233
+Non-top: marked 32904 of 438473
+Top 5: unsafe: 41825 missed: 909
+Top 10: unsafe: 83650 missed: 4600
+Top 20: unsafe: 167300 missed: 21509
+Overall missed percent: 1.6274058577405857
+Model: data/models/model-rec1-d3-auc2.10.fair, depth: 3, lastTurns: 10, rounds = 320
+Top: marked 262395 of 418233
+Non-top: marked 32820 of 438473
+Top 5: unsafe: 41825 missed: 922
+Top 10: unsafe: 83650 missed: 4462
+Top 20: unsafe: 167300 missed: 20864
+Overall missed percent: 1.597848176927675
+Model: data/models/model-rec1-d4-auc2.10.fair, depth: 4, lastTurns: 10, rounds = 5
+Top: marked 226151 of 418233
+Non-top: marked 36100 of 438473
+Top 5: unsafe: 41825 missed: 1682
+Top 10: unsafe: 83650 missed: 7934
+Top 20: unsafe: 167300 missed: 35493
+Overall missed percent: 2.813538553496713
+Model: data/models/model-rec1-d4-auc2.10.fair, depth: 4, lastTurns: 10, rounds = 20
+Top: marked 247964 of 418233
+Non-top: marked 33546 of 438473
+Top 5: unsafe: 41825 missed: 1030
+Top 10: unsafe: 83650 missed: 5448
+Top 20: unsafe: 167300 missed: 26927
+Overall missed percent: 1.9485654512851165
+Model: data/models/model-rec1-d4-auc2.10.fair, depth: 4, lastTurns: 10, rounds = 80
+Top: marked 262137 of 418233
+Non-top: marked 32833 of 438473
+Top 5: unsafe: 41825 missed: 893
+Top 10: unsafe: 83650 missed: 4437
+Top 20: unsafe: 167300 missed: 20802
+Overall missed percent: 1.57913927077107
+Model: data/models/model-rec1-d4-auc2.10.fair, depth: 4, lastTurns: 10, rounds = 320
+Top: marked 260553 of 418233
+Non-top: marked 32912 of 438473
+Top 5: unsafe: 41825 missed: 954
+Top 10: unsafe: 83650 missed: 4593
+Top 20: unsafe: 167300 missed: 21627
+Overall missed percent: 1.651613867304244
+Model: data/models/model-rec1-d5-auc2.10.fair, depth: 5, lastTurns: 10, rounds = 5
+Top: marked 237656 of 418233
+Non-top: marked 34837 of 438473
+Top 5: unsafe: 41825 missed: 1416
+Top 10: unsafe: 83650 missed: 6754
+Top 20: unsafe: 167300 missed: 31711
+Overall missed percent: 2.4322474596533175
+Model: data/models/model-rec1-d5-auc2.10.fair, depth: 5, lastTurns: 10, rounds = 20
+Top: marked 252872 of 418233
+Non-top: marked 33297 of 438473
+Top 5: unsafe: 41825 missed: 1043
+Top 10: unsafe: 83650 missed: 5222
+Top 20: unsafe: 167300 missed: 24969
+Overall missed percent: 1.8692468619246863
+Model: data/models/model-rec1-d5-auc2.10.fair, depth: 5, lastTurns: 10, rounds = 80
+Top: marked 261618 of 418233
+Non-top: marked 32860 of 438473
+Top 5: unsafe: 41825 missed: 919
+Top 10: unsafe: 83650 missed: 4506
+Top 20: unsafe: 167300 missed: 21270
+Overall missed percent: 1.6138075313807532
+Model: data/models/model-rec1-d5-auc2.10.fair, depth: 5, lastTurns: 10, rounds = 320
+Top: marked 256633 of 418233
+Non-top: marked 33108 of 438473
+Top 5: unsafe: 41825 missed: 1083
+Top 10: unsafe: 83650 missed: 4970
+Top 20: unsafe: 167300 missed: 23103
+Overall missed percent: 1.8024805738194862
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Model: data/models/model-avg-rec1-d2.fair, depth: 2, lastTurns: -1, rounds = 5
+
+
+
+Model: data/models/model-avg-rec1-d2.fair, depth: 2, lastTurns: -1, rounds = 5
+Top: marked 243272 of 422188
+Non-top: marked 42263 of 453840
+Top 5: unsafe: 42221 missed: 1868
+Top 10: unsafe: 84441 missed: 7970
+Top 20: unsafe: 168881 missed: 30879
+Overall missed percent: 2.7429456335677287
+Model: data/models/model-avg-rec1-d2.fair, depth: 2, lastTurns: -1, rounds = 20
+Top: marked 236615 of 422188
+Non-top: marked 36054 of 453840
+Top 5: unsafe: 42221 missed: 2011
+Top 10: unsafe: 84441 missed: 8426
+Top 20: unsafe: 168881 missed: 32395
+Overall missed percent: 2.9095703147419782
+Model: data/models/model-avg-rec1-d2.fair, depth: 2, lastTurns: -1, rounds = 80
+Top: marked 248266 of 422188
+Non-top: marked 35083 of 453840
+Top 5: unsafe: 42221 missed: 1753
+Top 10: unsafe: 84441 missed: 7029
+Top 20: unsafe: 168881 missed: 27532
+Overall missed percent: 2.477938171890805
+Model: data/models/model-avg-rec1-d2.fair, depth: 2, lastTurns: -1, rounds = 320
+Top: marked 254602 of 422188
+Non-top: marked 34767 of 453840
+Top 5: unsafe: 42221 missed: 1731
+Top 10: unsafe: 84441 missed: 6726
+Top 20: unsafe: 168881 missed: 26456
+Overall missed percent: 2.399777023787143
+Model: data/models/model-avg-rec1-d3.fair, depth: 3, lastTurns: -1, rounds = 5
+Top: marked 246494 of 422188
+Non-top: marked 42959 of 453840
+Top 5: unsafe: 42221 missed: 1827
+Top 10: unsafe: 84441 missed: 7752
+Top 20: unsafe: 168881 missed: 30022
+Overall missed percent: 2.6723342804947783
+Model: data/models/model-avg-rec1-d3.fair, depth: 3, lastTurns: -1, rounds = 20
+Top: marked 244658 of 422188
+Non-top: marked 35266 of 453840
+Top 5: unsafe: 42221 missed: 1873
+Top 10: unsafe: 84441 missed: 7665
+Top 20: unsafe: 168881 missed: 29433
+Overall missed percent: 2.6663830185573105
+Model: data/models/model-avg-rec1-d3.fair, depth: 3, lastTurns: -1, rounds = 80
+Top: marked 257306 of 422188
+Non-top: marked 34631 of 453840
+Top 5: unsafe: 42221 missed: 1628
+Top 10: unsafe: 84441 missed: 6416
+Top 20: unsafe: 168881 missed: 25099
+Overall missed percent: 2.274097895197675
+Model: data/models/model-avg-rec1-d3.fair, depth: 3, lastTurns: -1, rounds = 320
+Top: marked 260995 of 422188
+Non-top: marked 34447 of 453840
+Top 5: unsafe: 42221 missed: 1733
+Top 10: unsafe: 84441 missed: 6419
+Top 20: unsafe: 168881 missed: 24656
+Overall missed percent: 2.3110757105225286
+Model: data/models/model-avg-rec1-d4.fair, depth: 4, lastTurns: -1, rounds = 5
+Top: marked 241428 of 422188
+Non-top: marked 35544 of 453840
+Top 5: unsafe: 42221 missed: 1855
+Top 10: unsafe: 84441 missed: 7837
+Top 20: unsafe: 168881 missed: 30158
+Overall missed percent: 2.6996905262724233
+Model: data/models/model-avg-rec1-d4.fair, depth: 4, lastTurns: -1, rounds = 20
+Top: marked 259907 of 422188
+Non-top: marked 34658 of 453840
+Top 5: unsafe: 42221 missed: 1584
+Top 10: unsafe: 84441 missed: 6414
+Top 20: unsafe: 168881 missed: 24842
+Overall missed percent: 2.2454094267789513
+Model: data/models/model-avg-rec1-d4.fair, depth: 4, lastTurns: -1, rounds = 80
+Top: marked 265101 of 422188
+Non-top: marked 34242 of 453840
+Top 5: unsafe: 42221 missed: 1617
+Top 10: unsafe: 84441 missed: 5961
+Top 20: unsafe: 168881 missed: 23238
+Overall missed percent: 2.1599054728162836
+Model: data/models/model-avg-rec1-d4.fair, depth: 4, lastTurns: -1, rounds = 320
+Top: marked 266356 of 422188
+Non-top: marked 34180 of 453840
+Top 5: unsafe: 42221 missed: 1734
+Top 10: unsafe: 84441 missed: 6159
+Top 20: unsafe: 168881 missed: 23441
+Overall missed percent: 2.2447866038120985
+Model: data/models/model-avg-rec1-d5.fair, depth: 5, lastTurns: -1, rounds = 5
+Top: marked 254923 of 422188
+Non-top: marked 35109 of 453840
+Top 5: unsafe: 42221 missed: 1686
+Top 10: unsafe: 84441 missed: 6556
+Top 20: unsafe: 168881 missed: 25564
+Overall missed percent: 2.3319190888010866
+Model: data/models/model-avg-rec1-d5.fair, depth: 5, lastTurns: -1, rounds = 20
+Top: marked 264191 of 422188
+Non-top: marked 34287 of 453840
+Top 5: unsafe: 42221 missed: 1506
+Top 10: unsafe: 84441 missed: 5796
+Top 20: unsafe: 168881 missed: 23038
+Overall missed percent: 2.08186340344009
+Model: data/models/model-avg-rec1-d5.fair, depth: 5, lastTurns: -1, rounds = 80
+Top: marked 270110 of 422188
+Non-top: marked 33992 of 453840
+Top 5: unsafe: 42221 missed: 1471
+Top 10: unsafe: 84441 missed: 5473
+Top 20: unsafe: 168881 missed: 21463
+Overall missed percent: 1.9804019482724995
+Model: data/models/model-avg-rec1-d5.fair, depth: 5, lastTurns: -1, rounds = 320
+Top: marked 269045 of 422188
+Non-top: marked 34044 of 453840
+Top 5: unsafe: 42221 missed: 1702
+Top 10: unsafe: 84441 missed: 6046
+Top 20: unsafe: 168881 missed: 22733
+Overall missed percent: 2.195284640045455
+
+
+
+Model: data/models/model-avg-rec1-d6.fair, depth: 6, lastTurns: -1, rounds = 5
+Top: marked 254533 of 422188
+Non-top: marked 35055 of 453840
+Top 5: unsafe: 42221 missed: 1352
+Top 10: unsafe: 84441 missed: 6146
+Top 20: unsafe: 168881 missed: 25308
+Overall missed percent: 2.117570069076729
+Model: data/models/model-avg-rec1-d6.fair, depth: 6, lastTurns: -1, rounds = 20
+Top: marked 266357 of 422188
+Non-top: marked 34179 of 453840
+Top 5: unsafe: 42221 missed: 1296
+Top 10: unsafe: 84441 missed: 5324
+Top 20: unsafe: 168881 missed: 21654
+Overall missed percent: 1.8855142245905345
+Model: data/models/model-avg-rec1-d6.fair, depth: 6, lastTurns: -1, rounds = 80
+Top: marked 269771 of 422188
+Non-top: marked 34008 of 453840
+Top 5: unsafe: 42221 missed: 1407
+Top 10: unsafe: 84441 missed: 5419
+Top 20: unsafe: 168881 missed: 21578
+Overall missed percent: 1.9470950478218798
+Model: data/models/model-avg-rec1-d6.fair, depth: 6, lastTurns: -1, rounds = 320
+Top: marked 268041 of 422188
+Non-top: marked 34094 of 453840
+Top 5: unsafe: 42221 missed: 1761
+Top 10: unsafe: 84441 missed: 6156
+Top 20: unsafe: 168881 missed: 23160
+Overall missed percent: 2.2489017025250737
+Model: data/models/model-avg-rec1-d7.fair, depth: 7, lastTurns: -1, rounds = 5
+Top: marked 258952 of 422188
+Non-top: marked 34715 of 453840
+Top 5: unsafe: 42221 missed: 1477
+Top 10: unsafe: 84441 missed: 6145
+Top 20: unsafe: 168881 missed: 24367
+Overall missed percent: 2.1488040295678728
+Model: data/models/model-avg-rec1-d7.fair, depth: 7, lastTurns: -1, rounds = 20
+Top: marked 270028 of 422188
+Non-top: marked 33995 of 453840
+Top 5: unsafe: 42221 missed: 1337
+Top 10: unsafe: 84441 missed: 5116
+Top 20: unsafe: 168881 missed: 20784
+Overall missed percent: 1.8545454736223332
+Model: data/models/model-avg-rec1-d7.fair, depth: 7, lastTurns: -1, rounds = 80
+Top: marked 270709 of 422188
+Non-top: marked 33961 of 453840
+Top 5: unsafe: 42221 missed: 1515
+Top 10: unsafe: 84441 missed: 5517
+Top 20: unsafe: 168881 missed: 21477
+Overall missed percent: 2.006869888781706
+Model: data/models/model-avg-rec1-d7.fair, depth: 7, lastTurns: -1, rounds = 320
+Top: marked 268104 of 422188
+Non-top: marked 34091 of 453840
+Top 5: unsafe: 42221 missed: 1761
+Top 10: unsafe: 84441 missed: 6230
+Top 20: unsafe: 168881 missed: 23269
+Overall missed percent: 2.26089234230388
+Model: data/models/model-avg-rec1-d8.fair, depth: 8, lastTurns: -1, rounds = 5
+Top: marked 263602 of 422188
+Non-top: marked 36504 of 453840
+Top 5: unsafe: 42221 missed: 1446
+Top 10: unsafe: 84441 missed: 5955
+Top 20: unsafe: 168881 missed: 23401
+Overall missed percent: 2.083018456026886
+Model: data/models/model-avg-rec1-d8.fair, depth: 8, lastTurns: -1, rounds = 20
+Top: marked 270182 of 422188
+Non-top: marked 33987 of 453840
+Top 5: unsafe: 42221 missed: 1273
+Top 10: unsafe: 84441 missed: 5044
+Top 20: unsafe: 168881 missed: 20655
+Overall missed percent: 1.8118828856264355
+Model: data/models/model-avg-rec1-d8.fair, depth: 8, lastTurns: -1, rounds = 80
+Top: marked 270701 of 422188
+Non-top: marked 33962 of 453840
+Top 5: unsafe: 42221 missed: 1503
+Top 10: unsafe: 84441 missed: 5617
+Top 20: unsafe: 168881 missed: 21777
+Overall missed percent: 2.021910095853768
+Model: data/models/model-avg-rec1-d8.fair, depth: 8, lastTurns: -1, rounds = 320
+Top: marked 267824 of 422188
+Non-top: marked 34105 of 453840
+Top 5: unsafe: 42221 missed: 1842
+Top 10: unsafe: 84441 missed: 6412
+Top 20: unsafe: 168881 missed: 23727
+Overall missed percent: 2.3343752287025517
+
+
+
+Model: data/models/model-avg-rec1-d9.fair, depth: 9, lastTurns: -1, rounds = 5
+Top: marked 258650 of 422188
+Non-top: marked 34765 of 453840
+Top 5: unsafe: 42221 missed: 1605
+Top 10: unsafe: 84441 missed: 6222
+Top 20: unsafe: 168881 missed: 24272
+Overall missed percent: 2.2157435253146094
+Model: data/models/model-avg-rec1-d9.fair, depth: 9, lastTurns: -1, rounds = 20
+Top: marked 270659 of 422188
+Non-top: marked 33964 of 453840
+Top 5: unsafe: 42221 missed: 1341
+Top 10: unsafe: 84441 missed: 5171
+Top 20: unsafe: 168881 missed: 20581
+Overall missed percent: 1.8569435397292449
+Model: data/models/model-avg-rec1-d9.fair, depth: 9, lastTurns: -1, rounds = 80
+Top: marked 270329 of 422188
+Non-top: marked 33980 of 453840
+Top 5: unsafe: 42221 missed: 1618
+Top 10: unsafe: 84441 missed: 5864
+Top 20: unsafe: 168881 missed: 21987
+Overall missed percent: 2.1118539458015033
+Model: data/models/model-avg-rec1-d10.fair, depth: 10, lastTurns: -1, rounds = 5
+Top: marked 258311 of 422188
+Non-top: marked 34676 of 453840
+Top 5: unsafe: 42221 missed: 1497
+Top 10: unsafe: 84441 missed: 5993
+Top 20: unsafe: 168881 missed: 23995
+Overall missed percent: 2.1292635814349206
+Model: data/models/model-avg-rec1-d10.fair, depth: 10, lastTurns: -1, rounds = 20
+Top: marked 271625 of 422188
+Non-top: marked 33915 of 453840
+Top 5: unsafe: 42221 missed: 1314
+Top 10: unsafe: 84441 missed: 5095
+Top 20: unsafe: 168881 missed: 20745
+Overall missed percent: 1.840008818652859
+Model: data/models/model-avg-rec1-d10.fair, depth: 10, lastTurns: -1, rounds = 80
+Top: marked 270018 of 422188
+Non-top: marked 33996 of 453840
+Top 5: unsafe: 42221 missed: 1633
+Top 10: unsafe: 84441 missed: 5918
+Top 20: unsafe: 168881 missed: 22337
+Overall missed percent: 2.1357167384696885
+
+
+
+Model: data/models/model-avg-rec1-d3.logit.fair, depth: 3, lastTurns: -1, rounds = 5
+Top: marked 238128 of 422188
+Non-top: marked 41237 of 453840
+Top 5: unsafe: 42221 missed: 1987
+Top 10: unsafe: 84441 missed: 8643
+Top 20: unsafe: 168881 missed: 32776
+Overall missed percent: 2.935180113403958
+Model: data/models/model-avg-rec1-d3.logit.fair, depth: 3, lastTurns: -1, rounds = 20
+Top: marked 250917 of 422188
+Non-top: marked 35080 of 453840
+Top 5: unsafe: 42221 missed: 1434
+Top 10: unsafe: 84441 missed: 6248
+Top 20: unsafe: 168881 missed: 25920
+Overall missed percent: 2.18661200624474
+Model: data/models/model-avg-rec1-d3.logit.fair, depth: 3, lastTurns: -1, rounds = 80
+Top: marked 270653 of 422188
+Non-top: marked 33964 of 453840
+Top 5: unsafe: 42221 missed: 1081
+Top 10: unsafe: 84441 missed: 4645
+Top 20: unsafe: 168881 missed: 19708
+Overall missed percent: 1.6456434632043209
+Model: data/models/model-avg-rec1-d5.logit.fair, depth: 5, lastTurns: -1, rounds = 5
+Top: marked 238128 of 422188
+Non-top: marked 41237 of 453840
+Top 5: unsafe: 42221 missed: 1987
+Top 10: unsafe: 84441 missed: 8643
+Top 20: unsafe: 168881 missed: 32776
+Overall missed percent: 2.935180113403958
+Model: data/models/model-avg-rec1-d5.logit.fair, depth: 5, lastTurns: -1, rounds = 20
+Top: marked 263821 of 422188
+Non-top: marked 34305 of 453840
+Top 5: unsafe: 42221 missed: 1192
+Top 10: unsafe: 84441 missed: 5161
+Top 20: unsafe: 168881 missed: 22015
+Overall missed percent: 1.8276342209025582
+Model: data/models/model-avg-rec1-d5.logit.fair, depth: 5, lastTurns: -1, rounds = 80
+Top: marked 275342 of 422188
+Non-top: marked 33729 of 453840
+Top 5: unsafe: 42221 missed: 1053
+Top 10: unsafe: 84441 missed: 4492
+Top 20: unsafe: 168881 missed: 18872
+Overall missed percent: 1.5895096051017852
+Model: data/models/model-avg-rec1-d7.logit.fair, depth: 7, lastTurns: -1, rounds = 5
+Top: marked 238128 of 422188
+Non-top: marked 41237 of 453840
+Top 5: unsafe: 42221 missed: 1987
+Top 10: unsafe: 84441 missed: 8643
+Top 20: unsafe: 168881 missed: 32776
+Overall missed percent: 2.935180113403958
+Model: data/models/model-avg-rec1-d7.logit.fair, depth: 7, lastTurns: -1, rounds = 20
+Top: marked 265852 of 422188
+Non-top: marked 34204 of 453840
+Top 5: unsafe: 42221 missed: 1243
+Top 10: unsafe: 84441 missed: 5168
+Top 20: unsafe: 168881 missed: 21517
+Overall missed percent: 1.8378776863914923
+Model: data/models/model-avg-rec1-d7.logit.fair, depth: 7, lastTurns: -1, rounds = 80
+Top: marked 277739 of 422188
+Non-top: marked 33610 of 453840
+Top 5: unsafe: 42221 missed: 1019
+Top 10: unsafe: 84441 missed: 4364
+Top 20: unsafe: 168881 missed: 18395
+Overall missed percent: 1.5441229924911375
+Model: data/models/model-avg-rec1-d8.logit.fair, depth: 8, lastTurns: -1, rounds = 5
+Top: marked 238128 of 422188
+Non-top: marked 41237 of 453840
+Top 5: unsafe: 42221 missed: 1987
+Top 10: unsafe: 84441 missed: 8643
+Top 20: unsafe: 168881 missed: 32776
+Overall missed percent: 2.935180113403958
+Model: data/models/model-avg-rec1-d8.logit.fair, depth: 8, lastTurns: -1, rounds = 20
+Top: marked 266795 of 422188
+Non-top: marked 34157 of 453840
+Top 5: unsafe: 42221 missed: 1231
+Top 10: unsafe: 84441 missed: 5103
+Top 20: unsafe: 168881 missed: 21196
+Overall missed percent: 1.8149918955139368
+Model: data/models/model-avg-rec1-d8.logit.fair, depth: 8, lastTurns: -1, rounds = 80
+Top: marked 278245 of 422188
+Non-top: marked 33584 of 453840
+Top 5: unsafe: 42221 missed: 1030
+Top 10: unsafe: 84441 missed: 4345
+Top 20: unsafe: 168881 missed: 18270
+Overall missed percent: 1.543382747099769
+Model: data/models/model-avg-rec1-d9.logit.fair, depth: 9, lastTurns: -1, rounds = 5
+Top: marked 238128 of 422188
+Non-top: marked 41237 of 453840
+Top 5: unsafe: 42221 missed: 1987
+Top 10: unsafe: 84441 missed: 8643
+Top 20: unsafe: 168881 missed: 32776
+Overall missed percent: 2.935180113403958
+Model: data/models/model-avg-rec1-d9.logit.fair, depth: 9, lastTurns: -1, rounds = 20
+Top: marked 267005 of 422188
+Non-top: marked 34146 of 453840
+Top 5: unsafe: 42221 missed: 1229
+Top 10: unsafe: 84441 missed: 5073
+Top 20: unsafe: 168881 missed: 21120
+Overall missed percent: 1.8082416180698435
+Model: data/models/model-avg-rec1-d9.logit.fair, depth: 9, lastTurns: -1, rounds = 80
+Top: marked 278561 of 422188
+Non-top: marked 33569 of 453840
+Top 5: unsafe: 42221 missed: 1043
+Top 10: unsafe: 84441 missed: 4311
+Top 20: unsafe: 168881 missed: 18111
+Overall missed percent: 1.5408068833392576
+
+
+
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 0
+9: 0
+10: 1
+11: 0
+12: 0
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 10.0, 10.887220615468385
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 0
+9: 1
+10: 1
+11: 0
+12: 0
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 9.5, 10.802102858662384
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 0
+9: 2
+10: 2
+11: 0
+12: 0
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 9.5, 10.647932789132554
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 0
+9: 0
+10: 2
+11: 6
+12: 0
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 10.75, 11.529138269378068
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 0
+9: 3
+10: 7
+11: 6
+12: 0
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 10.1875, 11.296072930679449
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 0
+9: 4
+10: 12
+11: 15
+12: 1
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 10.40625, 11.379381575728779
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 0
+9: 6
+10: 36
+11: 21
+12: 1
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 10.265625, 11.30635120368293
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 1
+9: 16
+10: 55
+11: 49
+12: 7
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 10.3515625, 11.364116787091326
+
+
+
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 0
+9: 0
+10: 0
+11: 0
+12: 1
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 12.0, 12.983349927676457
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 0
+9: 0
+10: 1
+11: 1
+12: 0
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 10.5, 11.505824519603328
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 0
+9: 0
+10: 0
+11: 4
+12: 0
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 11.0, 11.861828505130132
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 0
+9: 0
+10: 5
+11: 1
+12: 2
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 10.625, 11.697284617505016
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 0
+9: 3
+10: 3
+11: 6
+12: 3
+13: 1
+14: 0
+15: 0
+Average max / average log 2: 10.75, 11.715637014561619
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 0
+9: 1
+10: 4
+11: 19
+12: 8
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 11.0625, 11.897052961340533
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 1
+9: 3
+10: 13
+11: 30
+12: 16
+13: 1
+14: 0
+15: 0
+Average max / average log 2: 10.9375, 11.829790782163084
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 0
+9: 5
+10: 38
+11: 68
+12: 15
+13: 2
+14: 0
+15: 0
+Average max / average log 2: 10.7734375, 11.712217979216945
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 1
+8: 1
+9: 9
+10: 70
+11: 134
+12: 40
+13: 1
+14: 0
+15: 0
+Average max / average log 2: 10.79296875, 11.734906726198076
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 1
+8: 0
+9: 26
+10: 121
+11: 266
+12: 98
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 10.845703125, 11.78308811357189
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 1
+8: 4
+9: 27
+10: 256
+11: 526
+12: 206
+13: 4
+14: 0
+15: 0
+Average max / average log 2: 10.890625, 11.800271105842285
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 2
+8: 7
+9: 80
+10: 510
+11: 1051
+12: 389
+13: 9
+14: 0
+15: 0
+Average max / average log 2: 10.857421875, 11.772710778082843

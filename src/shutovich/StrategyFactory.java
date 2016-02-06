@@ -11,7 +11,7 @@ public class StrategyFactory {
     }
 
     static FallbackStrategy createFallbackStrategy(Options options) {
-        int mode = 8;
+        int mode = 9;
         if (mode == 0) {
             String[] modelFileNames = {"data/models/model.10", "data/models/model.5"};
             double[] weights = {1.0, options.closeFallbackWeight};
@@ -31,6 +31,9 @@ public class StrategyFactory {
             return new IncreasedDepthFallbackStrategy("data/models/model-rec1-d2-auc2.10.fair", options, 2);
         } else if (mode == 8) {
             return new IncreasedDepthFallbackStrategy("data/models/model-avg-rec1-d7.logit.fair", options, 3);
+        } else if (mode == 9) {
+            return new AddedMeasureFallbackStrategy("data/models/model-avg-rec1-d7.logit.fair",
+                    "data/models/model-avg-rec1p3-d2.logit.fair", options, 3);
         } else {
             return null;
         }

@@ -12,7 +12,9 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.StringJoiner;
 import java.util.Map.Entry;
+import java.util.Scanner;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -21,6 +23,7 @@ import org.dmlc.xgboost4j.Booster;
 import org.dmlc.xgboost4j.DMatrix;
 import org.dmlc.xgboost4j.util.Trainer;
 import org.dmlc.xgboost4j.util.XGBoostError;
+import org.dmlc.xgboost4j.wrapper.XgboostJNI;
 
 /**
  * Created by U on 1/25/2016.
@@ -68,6 +71,64 @@ public class Classifier {
         this(-1, fileName, Mode.FAIR, 0, false);
     }
 
+    static void printFeatureStrengths(Booster booster) throws XGBoostError {
+        Map<String, Integer> featureScore = booster.getFeatureScore();
+        List<String> featureNames = GameField.getFeatureNames();
+        Map<String, String> renameMap = IntStream.range(0, featureNames.size()).mapToObj(j -> new SimpleEntry<>("f" + j, featureNames.get(j)))
+                .collect(Collectors.<Entry<String, String>, String, String>toMap(Entry::getKey, Entry::getValue));
+        assert(featureScore.size() <= featureNames.size());
+        List<String> sortedFeatures = featureScore.entrySet().stream().sorted((x, y) -> Integer.compare(x.getValue(), y.getValue()))
+                .map(x -> renameMap.get(x.getKey())).collect(Collectors.toList());
+        Main.logger.debug("Best features: " + String.join(", ", sortedFeatures.subList(sortedFeatures.size() - 3,  sortedFeatures.size()))
+                + ", worst features: " + String.join(", ", sortedFeatures.subList(0, 3)));
+    }
+
+    static Double getEvalError(String evalInfo, String name) {
+        for (String part : evalInfo.split("\t")) {
+            if (part.startsWith(name)) {
+                return Double.parseDouble(part.substring(name.length() + 1));
+            }
+        }
+        return -1e100;
+    }
+    
+    static Booster train(Map<String, Object> params, DMatrix train, DMatrix test,
+            int stopIfNoImprovementRounds) throws XGBoostError {
+        
+        String[] evalNames = { "train", "test" }; 
+        DMatrix[] evalMats = { train, test };
+        Booster booster = new Booster(params.entrySet(), evalMats);
+        String metric = (String) params.get("eval_metric");
+        double increasingFactor = metric.equals("auc")? -1.0 : 1.0;
+        
+        int iteration = 0;
+        double bestError = 1e100;
+        int bestIteration = -1;
+        byte[] modelRaw = null;
+        while (iteration < 1000) {
+            booster.update(train, iteration);
+            String evalInfo = booster.evalSet(evalMats, evalNames, iteration);
+            Main.logger.debug(evalInfo);
+            double error = Classifier.getEvalError(evalInfo, "test-" + metric) * increasingFactor;
+            if (error < bestError) {
+                bestIteration = iteration;
+                bestError = error;
+                modelRaw = booster.getModelRaw();
+            } else if (iteration > bestIteration + stopIfNoImprovementRounds) {
+                Main.logger.info("Stopping at " + iteration + " iterations, error = " + error
+                        + ", best error: " + bestError + " at " + bestIteration);
+                break;
+            }
+            iteration++;
+        }
+        booster = new Booster(params.entrySet(), modelRaw);
+        String evalInfo = booster.evalSet(evalMats, evalNames, iteration);
+        Main.logger.debug("Best evalInfo: " + evalInfo);
+        Main.logger.debug("Best: " + Classifier.getEvalError(evalInfo, "test-" + metric));
+        Classifier.printFeatureStrengths(booster);
+        return booster;
+    }
+    
     static DMatrix getMatrix(List<List<Double>> features) throws XGBoostError {
         if (features.isEmpty()) {
             return null;
@@ -265,7 +326,7 @@ public class Classifier {
     void trainModel(DMatrix train, DMatrix test, DMatrix evaluation, List<Integer> evaluationTurnsLeft) throws XGBoostError {
         double minMissedOverall = 1e100;
         int bestRounds = 0;
-        for (int rounds = 5; rounds <= 80; rounds *= 4) {
+        for (int rounds = 5; rounds <= 320; rounds *= 4) {
             Main.logger.info(toString() + ", rounds = " + rounds);
             Booster booster = Trainer.train(boosterParameters.entrySet(), train, rounds,
                     Arrays.asList(new SimpleEntry<>("train", train), new SimpleEntry<>("test", test)), null, null);
@@ -289,6 +350,17 @@ public class Classifier {
         System.out.println("Best rounds " + bestRounds + " for missed overall " + minMissedOverall);
     }
     
+    void trainModelUsingTest(DMatrix train, DMatrix test, DMatrix evaluation, List<Integer> evaluationTurnsLeft) throws XGBoostError {
+        Main.logger.info(toString());
+        Booster booster = Classifier.train(boosterParameters, train, test, 20);
+        Main.logger.debug("Trained");
+        float[][] predicts = booster.predict(evaluation);
+        double threshold = Classifier.getThresholdForMarkedPercent(predicts, evaluationTurnsLeft, 0.1);
+        double missedOverall = Classifier.getMissedForMarkedPercent(predicts, evaluationTurnsLeft, threshold);
+        booster.saveModel(fileName);
+        saveThreshold(threshold);
+    }
+    
     void trainModel(InputPositions usedPositions, InputPositions evaluationPositions, boolean splitUsed) {
         try {
             DMatrix evaluation = Classifier.getMatrix(evaluationPositions, null, -1);
@@ -310,7 +382,7 @@ public class Classifier {
                 }
                 
                 List<Integer> evaluationTurnsLeft = evaluationPositions.getTurnsLeft(null);
-                trainModel(train, test, evaluation, evaluationTurnsLeft);
+                trainModelUsingTest(train, test, evaluation, evaluationTurnsLeft);
 
             }
         } catch (XGBoostError e) {
@@ -322,6 +394,7 @@ public class Classifier {
 
     Booster loadModel() {
         try {
+            Main.logger.debug("Loading model " + fileName);
             return new Booster(boosterParameters.entrySet(), fileName);
         } catch (XGBoostError e) {
             e.printStackTrace();

@@ -2,6 +2,7 @@ package shutovich;
 
 import java.util.AbstractMap.SimpleEntry;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -34,6 +35,11 @@ public class GameField {
     GameField(long lines) {
         this.lines = lines;
         this.swap = GameField.swapLines(lines);
+    }
+
+    static List<String> getFeatureNames() {
+        return Arrays.asList("right-down", "trap", "empty-cell", "large-numbers", "cell33", "cell23", "cell32", "cell13", "cell31", "cell03", "cell30",
+                "x-x", "X-X", "0-2", "0-4", "x-Y", "x-2x", "X-2X", "sum");
     }
 
     void reset() {
@@ -508,7 +514,7 @@ public class GameField {
         features.add(getSum() * 0.01);
         return features;
     }
-
+    
     Map<Direction, List<Map.Entry<Map<Direction, Long>, Double>>> getPositionsInDepth1(boolean consider4s) {
         Map<Direction, List<Entry<Map<Direction, Long>, Double>>> result = new HashMap<>();
         for (Direction direction : Direction.values()) {

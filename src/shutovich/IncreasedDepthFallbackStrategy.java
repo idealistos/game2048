@@ -29,8 +29,6 @@ public class IncreasedDepthFallbackStrategy extends CheckingFallbackStrategy {
 
     @Override
     public Action chooseOptimalAction(GameField field) {
-        Strategy strategy = new MinMismatchDepthNStrategy(options, null, depth);
-        strategy.field = field;
-        return strategy.chooseOptimalAction();
+        return MinMismatchDepthNStrategy.chooseOptimalAction(field, options, depth, false, null, -1);
     }
 }

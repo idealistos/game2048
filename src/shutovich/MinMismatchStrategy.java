@@ -9,20 +9,21 @@ public class MinMismatchStrategy extends Strategy {
         super(options, fallbackStrategy);
     }
 
-    double getPositionPenalty(GameField field) {
+    static double getPositionPenalty(GameField field, Options options) {
         return field.getRightDownPenalty()
                 + options.trapFactor * field.getTrapPenalty()
-                - options.emptyCellPenalty * Math.pow(field.getEmptyCellCount(), 2.0)
+                + options.emptyCellPenalty * (256.0 - Math.pow(field.getEmptyCellCount(), 2.0))
                 + options.largeNumberCountPenalty * field.getLargeNumbersCount();
     }
 
-    int getActions(GameField field, Action[] actions) {
+    static int getActions(GameField field, Action[] actions, Options options) {
         int actionCount = 0;
         for (Direction direction : Direction.values()) {
             if (!field.cornerMoves(direction) && field.canShift(direction)) {
                 GameField field1 = new GameField(field).shift(direction);
-                double penalty = getPositionPenalty(field1);
-                if ((turn % 2 == 0 && direction == Direction.DOWN) || (turn % 2 == 1 && direction == Direction.RIGHT)) {
+                double penalty = MinMismatchStrategy.getPositionPenalty(field1, options);
+                long sum = field1.getSum();
+                if ((sum % 4 == 0 && direction == Direction.DOWN) || (sum % 4 == 1 && direction == Direction.RIGHT)) {
                     penalty -= 0.001;
                 }
                 actions[actionCount++] = new Action(field1, penalty, direction);
@@ -34,7 +35,7 @@ public class MinMismatchStrategy extends Strategy {
         for (Direction direction : Direction.values()) {
             if (field.canShift(direction)) {
                 GameField newField = new GameField(field).shift(direction);
-                double penalty = getPositionPenalty(newField) + options.cornerMovesPenalty;
+                double penalty = MinMismatchStrategy.getPositionPenalty(newField, options) + options.cornerMovesPenalty;
                 actions[actionCount++] = new Action(newField, penalty, direction);
             }
         }
@@ -52,14 +53,18 @@ public class MinMismatchStrategy extends Strategy {
         }
         return (iBest < 0)? new Action(null, 1e6, null) : actions[iBest];
     }
+    
+    static Action chooseOptimalAction(GameField field, Options options) {
+        Action[] actions = new Action[4];
+        int actionCount = MinMismatchStrategy.getActions(field, actions, options);
+        return MinMismatchStrategy.getBestAction(actions, actionCount);
+    }
 
     @Override
     Action chooseOptimalAction() {
-        Action[] actions = new Action[4];
-        int actionCount = getActions(field, actions);
-        Action bestAction = MinMismatchStrategy.getBestAction(actions, actionCount);
-        field = (bestAction.field == null)? field : bestAction.field;
-        return bestAction;
+        Action action = MinMismatchStrategy.chooseOptimalAction(field, options);
+        field = (action.field == null)? field : action.field;
+        return action;
     }
 
 }

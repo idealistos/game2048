@@ -3259,3 +3259,4674 @@ Average max / average log 2: 10.890625, 11.800271105842285
 14: 0
 15: 0
 Average max / average log 2: 10.857421875, 11.772710778082843
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 2
+7: 11
+8: 21
+9: 162
+10: 994
+11: 2073
+12: 823
+13: 10
+14: 0
+15: 0
+Average max / average log 2: 10.85546875, 11.77321780630775
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 5
+7: 17
+8: 33
+9: 347
+10: 1989
+11: 4208
+12: 1565
+13: 28
+14: 0
+15: 0
+Average max / average log 2: 10.846923828125, 11.772039973439522
+
+
+
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 6
+7: 37
+8: 65
+9: 630
+10: 4128
+11: 8209
+12: 3256
+13: 53
+14: 0
+15: 0
+Average max / average log 2: 10.85357666015625, 11.774052119052458
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 14
+7: 58
+8: 152
+9: 1297
+10: 8226
+11: 16388
+12: 6536
+13: 97
+14: 0
+15: 0
+Average max / average log 2: 10.85205078125, 11.773744749390355
+
+
+
+Model: data/models/model-rec1p3-d2-auc2.10.fair, depth: 2, lastTurns: 10, rounds = 5
+Top: marked 83009 of 163700
+Non-top: marked 23180 of 254507
+Top 5: unsafe: 16370 missed: 1639
+Top 10: unsafe: 32740 missed: 6049
+Top 20: unsafe: 65480 missed: 19699
+Overall missed percent: 5.354230299328039
+Model: data/models/model-rec1p3-d2-auc2.10.fair, depth: 2, lastTurns: 10, rounds = 20
+Top: marked 94731 of 163700
+Non-top: marked 22974 of 254507
+Top 5: unsafe: 16370 missed: 1130
+Top 10: unsafe: 32740 missed: 4373
+Top 20: unsafe: 65480 missed: 15365
+Overall missed percent: 3.8895082467929134
+Model: data/models/model-rec1p3-d2-auc2.10.fair, depth: 2, lastTurns: 10, rounds = 80
+Top: marked 101122 of 163700
+Non-top: marked 21215 of 254507
+Top 5: unsafe: 16370 missed: 752
+Top 10: unsafe: 32740 missed: 3381
+Top 20: unsafe: 65480 missed: 12643
+Overall missed percent: 2.9168448381185095
+Model: data/models/model-rec1p3-d2-auc2.10.fair, depth: 2, lastTurns: 10, rounds = 320
+Top: marked 103014 of 163700
+Non-top: marked 21120 of 254507
+Top 5: unsafe: 16370 missed: 790
+Top 10: unsafe: 32740 missed: 3305
+Top 20: unsafe: 65480 missed: 12108
+Overall missed percent: 2.899205864386072
+Model: data/models/model-rec1p3-d3-auc2.10.fair, depth: 3, lastTurns: 10, rounds = 5
+Top: marked 83009 of 163700
+Non-top: marked 23180 of 254507
+Top 5: unsafe: 16370 missed: 1639
+Top 10: unsafe: 32740 missed: 6049
+Top 20: unsafe: 65480 missed: 19699
+Overall missed percent: 5.354230299328039
+Model: data/models/model-rec1p3-d3-auc2.10.fair, depth: 3, lastTurns: 10, rounds = 20
+Top: marked 95723 of 163700
+Non-top: marked 21877 of 254507
+Top 5: unsafe: 16370 missed: 1017
+Top 10: unsafe: 32740 missed: 4145
+Top 20: unsafe: 65480 missed: 14889
+Overall missed percent: 3.645464263897373
+Model: data/models/model-rec1p3-d3-auc2.10.fair, depth: 3, lastTurns: 10, rounds = 80
+Top: marked 102229 of 163700
+Non-top: marked 21159 of 254507
+Top 5: unsafe: 16370 missed: 761
+Top 10: unsafe: 32740 missed: 3326
+Top 20: unsafe: 65480 missed: 12301
+Overall missed percent: 2.884926695174099
+Model: data/models/model-rec1p3-d3-auc2.10.fair, depth: 3, lastTurns: 10, rounds = 320
+Top: marked 102432 of 163700
+Non-top: marked 21149 of 254507
+Top 5: unsafe: 16370 missed: 825
+Top 10: unsafe: 32740 missed: 3363
+Top 20: unsafe: 65480 missed: 12315
+Overall missed percent: 2.97548869883934
+Model: data/models/model-rec1p3-d4-auc2.10.fair, depth: 4, lastTurns: 10, rounds = 5
+Top: marked 90640 of 163700
+Non-top: marked 22152 of 254507
+Top 5: unsafe: 16370 missed: 1347
+Top 10: unsafe: 32740 missed: 5025
+Top 20: unsafe: 65480 missed: 16547
+Overall missed percent: 4.444028711056811
+Model: data/models/model-rec1p3-d4-auc2.10.fair, depth: 4, lastTurns: 10, rounds = 20
+Top: marked 96615 of 163700
+Non-top: marked 21441 of 254507
+Top 5: unsafe: 16370 missed: 921
+Top 10: unsafe: 32740 missed: 3929
+Top 20: unsafe: 65480 missed: 14458
+Overall missed percent: 3.429291386682957
+Model: data/models/model-rec1p3-d4-auc2.10.fair, depth: 4, lastTurns: 10, rounds = 80
+Top: marked 103234 of 163700
+Non-top: marked 21110 of 254507
+Top 5: unsafe: 16370 missed: 785
+Top 10: unsafe: 32740 missed: 3292
+Top 20: unsafe: 65480 missed: 11998
+Overall missed percent: 2.8807269395235187
+Model: data/models/model-rec1p3-d4-auc2.10.fair, depth: 4, lastTurns: 10, rounds = 320
+Top: marked 101643 of 163700
+Non-top: marked 21189 of 254507
+Top 5: unsafe: 16370 missed: 908
+Top 10: unsafe: 32740 missed: 3501
+Top 20: unsafe: 65480 missed: 12655
+Overall missed percent: 3.145006108735492
+Model: data/models/model-rec1p3-d5-auc2.10.fair, depth: 5, lastTurns: 10, rounds = 5
+Top: marked 95742 of 163700
+Non-top: marked 23196 of 254507
+Top 5: unsafe: 16370 missed: 1171
+Top 10: unsafe: 32740 missed: 4343
+Top 20: unsafe: 65480 missed: 14734
+Overall missed percent: 3.882254123396457
+Model: data/models/model-rec1p3-d5-auc2.10.fair, depth: 5, lastTurns: 10, rounds = 20
+Top: marked 98717 of 163700
+Non-top: marked 21336 of 254507
+Top 5: unsafe: 16370 missed: 881
+Top 10: unsafe: 32740 missed: 3750
+Top 20: unsafe: 65480 missed: 13784
+Overall missed percent: 3.2742822235797187
+Model: data/models/model-rec1p3-d5-auc2.10.fair, depth: 5, lastTurns: 10, rounds = 80
+Top: marked 102406 of 163700
+Non-top: marked 21151 of 254507
+Top 5: unsafe: 16370 missed: 798
+Top 10: unsafe: 32740 missed: 3310
+Top 20: unsafe: 65480 missed: 12280
+Overall missed percent: 2.923640806353085
+Model: data/models/model-rec1p3-d5-auc2.10.fair, depth: 5, lastTurns: 10, rounds = 320
+Top: marked 98753 of 163700
+Non-top: marked 21333 of 254507
+Top 5: unsafe: 16370 missed: 1098
+Top 10: unsafe: 32740 missed: 3912
+Top 20: unsafe: 65480 missed: 13781
+Overall missed percent: 3.5886530238240684
+Model: data/models/model-rec1p3-d6-auc2.10.fair, depth: 6, lastTurns: 10, rounds = 5
+Top: marked 92638 of 163700
+Non-top: marked 21876 of 254507
+Top 5: unsafe: 16370 missed: 1158
+Top 10: unsafe: 32740 missed: 4488
+Top 20: unsafe: 65480 missed: 16001
+Overall missed percent: 4.007406841783751
+Model: data/models/model-rec1p3-d6-auc2.10.fair, depth: 6, lastTurns: 10, rounds = 20
+Top: marked 99356 of 163700
+Non-top: marked 21306 of 254507
+Top 5: unsafe: 16370 missed: 834
+Top 10: unsafe: 32740 missed: 3637
+Top 20: unsafe: 65480 missed: 13434
+Overall missed percent: 3.1556200366524125
+Model: data/models/model-rec1p3-d6-auc2.10.fair, depth: 6, lastTurns: 10, rounds = 80
+Top: marked 101222 of 163700
+Non-top: marked 21210 of 254507
+Top 5: unsafe: 16370 missed: 847
+Top 10: unsafe: 32740 missed: 3431
+Top 20: unsafe: 65480 missed: 12663
+Overall missed percent: 3.049709835064142
+Model: data/models/model-rec1p3-d6-auc2.10.fair, depth: 6, lastTurns: 10, rounds = 320
+Top: marked 96425 of 163700
+Non-top: marked 21450 of 254507
+Top 5: unsafe: 16370 missed: 1246
+Top 10: unsafe: 32740 missed: 4232
+Top 20: unsafe: 65480 missed: 14863
+Overall missed percent: 3.949832009773977
+
+
+
+
+
+
+
+
+
+Model: data/models/model-rec1p3-d5-auc2.test.10.fair, depth: 5, lastTurns: 10
+
+
+
+Model: data/models/model-rec1p3-d5-auc2.test.10.fair, depth: 5, lastTurns: 10
+Stopping at 75 iterations, error = -0.958889, best error: -0.95899 at 64
+Top: marked 102607 of 163700
+Non-top: marked 21140 of 254507
+Top 5: unsafe: 16370 missed: 794
+Top 10: unsafe: 32740 missed: 3314
+Top 20: unsafe: 65480 missed: 12233
+Overall missed percent: 2.916386682956628
+
+
+
+Model: data/models/model-rec1p3-d5-auc2.test.10.fair, depth: 5, lastTurns: 10
+Stopping at 85 iterations, error = -0.965384, best error: -0.965566 at 74
+
+
+
+Model: data/models/model-rec1p3-d5-auc2.test.10.fair, depth: 5, lastTurns: 10
+Stopping at 78 iterations, error = -0.964434, best error: -0.964619 at 67
+
+
+
+Model: data/models/model-rec1p3-d5-auc2.test.10.fair, depth: 5, lastTurns: 10
+Stopping at 67 iterations, error = -0.963464, best error: -0.963552 at 56
+Top: marked 102725 of 163700
+Non-top: marked 21134 of 254507
+Top 5: unsafe: 16370 missed: 786
+Top 10: unsafe: 32740 missed: 3306
+Top 20: unsafe: 65480 missed: 12241
+Overall missed percent: 2.9047800855222965
+
+
+
+Model: data/models/model-rec1p3-d5-auc2.test.10.fair, depth: 5, lastTurns: 10
+
+
+
+Model: data/models/model-rec1p3-d5-auc2.test.10.fair, depth: 5, lastTurns: 10
+
+
+
+
+
+
+Model: data/models/model-rec1p3-d5-auc2.test.10.fair, depth: 5, lastTurns: 10
+
+
+
+
+
+
+Model: data/models/model-rec1p3-d5-auc2.test.10.fair, depth: 5, lastTurns: 10
+
+
+
+Model: data/models/model-rec1p3-d5-auc2.test.10.fair, depth: 5, lastTurns: 10
+
+
+
+Model: data/models/model-rec1p3-d5-auc2.test.10.fair, depth: 5, lastTurns: 10
+Stopping at 43 iterations, error = -0.962632, best error: -0.962717 at 32
+Top: marked 102358 of 163700
+Non-top: marked 21153 of 254507
+Top 5: unsafe: 16370 missed: 752
+Top 10: unsafe: 32740 missed: 3308
+Top 20: unsafe: 65480 missed: 12357
+Overall missed percent: 2.8727092241905927
+
+
+
+Model: data/models/model-rec1p3-d5-auc2.test.10.fair, depth: 5, lastTurns: 10
+
+
+
+Model: data/models/model-rec1p3-d5-auc2.test.10.fair, depth: 5, lastTurns: 10
+Top: marked 87449 of 163700
+Non-top: marked 24454 of 254507
+Top 5: unsafe: 16370 missed: 1180
+Top 10: unsafe: 32740 missed: 4994
+Top 20: unsafe: 65480 missed: 17717
+Overall missed percent: 4.319868662186927
+
+
+
+Model: data/models/model-rec1p3-d5-auc2.test.10.fair, depth: 5, lastTurns: 10
+
+
+
+Model: data/models/model-rec1p3-d5-auc2.test.10.fair, depth: 5, lastTurns: 10
+Stopping at 54 iterations, error = -0.96238, best error: -0.962556 at 43
+
+
+
+Model: data/models/model-rec1p3-d5-auc2.test.10.fair, depth: 5, lastTurns: 10
+
+
+
+Model: data/models/model-rec1p3-d5-auc2.test.10.fair, depth: 5, lastTurns: 10
+Top: marked 87449 of 163700
+Non-top: marked 24454 of 254507
+Top 5: unsafe: 16370 missed: 1180
+Top 10: unsafe: 32740 missed: 4994
+Top 20: unsafe: 65480 missed: 17717
+Overall missed percent: 4.319868662186927
+
+
+
+Model: data/models/model-rec1p3-d5-auc2.test.10.fair, depth: 5, lastTurns: 10
+Stopping at 43 iterations, error = -0.964014, best error: -0.964058 at 32
+Top: marked 101526 of 163700
+Non-top: marked 21194 of 254507
+Top 5: unsafe: 16370 missed: 757
+Top 10: unsafe: 32740 missed: 3381
+Top 20: unsafe: 65480 missed: 12587
+Overall missed percent: 2.9186774587660356
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Model: data/models/model-avg-rec1p3-d3.logit.fair, depth: 3, lastTurns: -1
+
+
+
+Model: data/models/model-avg-rec1p3-d3.logit.fair, depth: 3, lastTurns: -1
+Stopping at 172 iterations, error = 0.015881, best error: 0.015826 at 151
+Top: marked 103906 of 163700
+Non-top: marked 21076 of 254507
+Top 5: unsafe: 16370 missed: 828
+Top 10: unsafe: 32740 missed: 3410
+Top 20: unsafe: 65480 missed: 12070
+Overall missed percent: 2.974801466096518
+Model: data/models/model-avg-rec1p3-d5.logit.fair, depth: 5, lastTurns: -1
+Stopping at 105 iterations, error = 0.01564, best error: 0.015568 at 84
+Top: marked 103878 of 163700
+Non-top: marked 21077 of 254507
+Top 5: unsafe: 16370 missed: 840
+Top 10: unsafe: 32740 missed: 3408
+Top 20: unsafe: 65480 missed: 12110
+Overall missed percent: 2.9919059254734273
+Model: data/models/model-avg-rec1p3-d7.logit.fair, depth: 7, lastTurns: -1
+Stopping at 88 iterations, error = 0.015734, best error: 0.01563 at 67
+Top: marked 103791 of 163700
+Non-top: marked 21081 of 254507
+Top 5: unsafe: 16370 missed: 853
+Top 10: unsafe: 32740 missed: 3427
+Top 20: unsafe: 65480 missed: 12140
+Overall missed percent: 3.0158827122785583
+Model: data/models/model-avg-rec1p3-d8.logit.fair, depth: 8, lastTurns: -1
+Stopping at 66 iterations, error = 0.01569, best error: 0.015536 at 45
+Top: marked 103498 of 163700
+Non-top: marked 21096 of 254507
+Top 5: unsafe: 16370 missed: 859
+Top 10: unsafe: 32740 missed: 3431
+Top 20: unsafe: 65480 missed: 12159
+Overall missed percent: 3.0258857666463044
+Model: data/models/model-avg-rec1p3-d9.logit.fair, depth: 9, lastTurns: -1
+Stopping at 62 iterations, error = 0.015676, best error: 0.01561 at 41
+Top: marked 103253 of 163700
+Non-top: marked 21108 of 254507
+Top 5: unsafe: 16370 missed: 846
+Top 10: unsafe: 32740 missed: 3430
+Top 20: unsafe: 65480 missed: 12248
+Overall missed percent: 3.0164935858277335
+
+
+
+Model: data/models/model-avg-rec1p3-d2.logit.fair, depth: 2, lastTurns: -1
+Stopping at 279 iterations, error = 0.014917, best error: 0.014888 at 258
+Top: marked 103808 of 163700
+Non-top: marked 21080 of 254507
+Top 5: unsafe: 16370 missed: 815
+Top 10: unsafe: 32740 missed: 3372
+Top 20: unsafe: 65480 missed: 12089
+Overall missed percent: 2.94876298106292
+Model: data/models/model-avg-rec1p3-d4.logit.fair, depth: 4, lastTurns: -1
+Stopping at 118 iterations, error = 0.014752, best error: 0.014686 at 97
+Top: marked 103498 of 163700
+Non-top: marked 21096 of 254507
+Top 5: unsafe: 16370 missed: 830
+Top 10: unsafe: 32740 missed: 3420
+Top 20: unsafe: 65480 missed: 12173
+Overall missed percent: 2.988164324984728
+Model: data/models/model-avg-rec1p3-d6.logit.fair, depth: 6, lastTurns: -1
+Stopping at 71 iterations, error = 0.014274, best error: 0.014258 at 50
+Top: marked 103058 of 163700
+Non-top: marked 21118 of 254507
+Top 5: unsafe: 16370 missed: 861
+Top 10: unsafe: 32740 missed: 3470
+Top 20: unsafe: 65480 missed: 12381
+Overall missed percent: 3.0571930360415394
+
+
+
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 0
+9: 0
+10: 1
+11: 0
+12: 0
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 10.0, 11.437752072323603
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 0
+9: 0
+10: 0
+11: 2
+12: 0
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 11.0, 11.882132498130714
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 0
+9: 0
+10: 0
+11: 3
+12: 1
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 11.25, 12.038817811063414
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 0
+9: 2
+10: 0
+11: 4
+12: 2
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 10.75, 11.77938781461269
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 0
+9: 2
+10: 3
+11: 9
+12: 2
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 10.6875, 11.598845796559173
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 0
+9: 1
+10: 8
+11: 18
+12: 5
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 10.84375, 11.73444417228562
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 2
+8: 0
+9: 1
+10: 23
+11: 26
+12: 12
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 10.671875, 11.677980817205302
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 0
+9: 6
+10: 39
+11: 61
+12: 22
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 10.7734375, 11.722963639320897
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 0
+9: 7
+10: 54
+11: 138
+12: 57
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 10.95703125, 11.848177390628383
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 1
+8: 2
+9: 17
+10: 115
+11: 269
+12: 105
+13: 3
+14: 0
+15: 0
+Average max / average log 2: 10.90625, 11.817215107663772
+
+
+
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 0
+9: 0
+10: 0
+11: 1
+12: 0
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 11.0, 12.130570562805426
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 0
+9: 0
+10: 0
+11: 2
+12: 0
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 11.0, 11.73448599788609
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 0
+9: 0
+10: 0
+11: 3
+12: 1
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 11.25, 12.198529963334535
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 0
+9: 0
+10: 0
+11: 4
+12: 4
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 11.5, 12.282606807433213
+
+
+
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 0
+9: 0
+10: 1
+11: 0
+12: 0
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 10.0, 11.032045726930809
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 0
+9: 0
+10: 0
+11: 1
+12: 1
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 11.5, 12.275799101596162
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 0
+9: 0
+10: 0
+11: 3
+12: 1
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 11.25, 12.181967520176954
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 0
+9: 1
+10: 3
+11: 3
+12: 1
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 10.5, 11.48272686886011
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 1
+7: 0
+8: 0
+9: 1
+10: 2
+11: 9
+12: 3
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 10.625, 11.603018754124967
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 0
+9: 1
+10: 7
+11: 18
+12: 5
+13: 1
+14: 0
+15: 0
+Average max / average log 2: 10.9375, 11.73958494864234
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 2
+9: 3
+10: 14
+11: 36
+12: 9
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 10.734375, 11.64534467154088
+
+
+
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 0
+9: 0
+10: 1
+11: 0
+12: 0
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 10.0, 11.425215903299383
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 0
+9: 0
+10: 0
+11: 1
+12: 1
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 11.5, 12.434911370074236
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 0
+9: 0
+10: 0
+11: 2
+12: 1
+13: 1
+14: 0
+15: 0
+Average max / average log 2: 11.75, 12.62189476979356
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 0
+9: 0
+10: 1
+11: 5
+12: 1
+13: 1
+14: 0
+15: 0
+Average max / average log 2: 11.25, 12.057241913551382
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 0
+9: 1
+10: 2
+11: 7
+12: 6
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 11.125, 11.989515285325819
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 0
+9: 1
+10: 4
+11: 15
+12: 10
+13: 2
+14: 0
+15: 0
+Average max / average log 2: 11.25, 12.144739279880206
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 0
+9: 1
+10: 2
+11: 37
+12: 21
+13: 3
+14: 0
+15: 0
+Average max / average log 2: 11.359375, 12.187243642329076
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 0
+9: 0
+10: 19
+11: 60
+12: 48
+13: 1
+14: 0
+15: 0
+Average max / average log 2: 11.2421875, 12.107249426926412
+
+
+
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 0
+9: 0
+10: 0
+11: 0
+12: 1
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 12.0, 12.991876099003415
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 0
+9: 0
+10: 0
+11: 2
+12: 0
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 11.0, 11.886477013751735
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 0
+9: 0
+10: 1
+11: 1
+12: 2
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 11.25, 12.142790114806937
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 0
+9: 0
+10: 1
+11: 5
+12: 2
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 11.125, 11.857795311202183
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 0
+9: 0
+10: 6
+11: 3
+12: 7
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 11.0625, 11.96527729866878
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 1
+7: 0
+8: 0
+9: 0
+10: 5
+11: 18
+12: 8
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 10.9375, 11.852883510698252
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 0
+9: 1
+10: 8
+11: 29
+12: 26
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 11.25, 12.078401681170863
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 1
+7: 0
+8: 0
+9: 3
+10: 15
+11: 70
+12: 37
+13: 2
+14: 0
+15: 0
+Average max / average log 2: 11.1171875, 12.00775888654303
+
+
+
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 0
+9: 0
+10: 0
+11: 0
+12: 1
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 12.0, 12.815783544128184
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 0
+9: 0
+10: 0
+11: 1
+12: 1
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 11.5, 12.329200329037732
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 0
+9: 0
+10: 1
+11: 2
+12: 1
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 11.0, 11.685267721860345
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 0
+9: 0
+10: 2
+11: 4
+12: 2
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 11.0, 11.970519430417388
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 0
+9: 0
+10: 5
+11: 8
+12: 3
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 10.875, 11.71981471086282
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 0
+9: 1
+10: 7
+11: 18
+12: 5
+13: 1
+14: 0
+15: 0
+Average max / average log 2: 10.9375, 11.802482786495782
+
+
+
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 1
+7: 0
+8: 0
+9: 0
+10: 0
+11: 0
+12: 0
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 6.0, 7.303780748177103
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 1
+7: 0
+8: 0
+9: 0
+10: 1
+11: 0
+12: 0
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 8.0, 9.371838684233484
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 1
+7: 1
+8: 1
+9: 0
+10: 1
+11: 0
+12: 0
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 7.75, 8.559079602491705
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 4
+7: 1
+8: 1
+9: 1
+10: 1
+11: 0
+12: 0
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 7.25, 8.108149350264096
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 10
+7: 1
+8: 1
+9: 2
+10: 1
+11: 1
+12: 0
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 7.125, 8.181365563171177
+1: 0
+2: 0
+3: 0
+4: 0
+5: 2
+6: 15
+7: 7
+8: 1
+9: 2
+10: 3
+11: 2
+12: 0
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 7.09375, 8.020916400610842
+1: 0
+2: 0
+3: 0
+4: 0
+5: 2
+6: 38
+7: 12
+8: 3
+9: 2
+10: 4
+11: 3
+12: 0
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 6.828125, 7.807428656655527
+1: 0
+2: 0
+3: 0
+4: 0
+5: 2
+6: 64
+7: 25
+8: 19
+9: 7
+10: 5
+11: 4
+12: 2
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 7.046875, 7.930519901312534
+1: 0
+2: 0
+3: 0
+4: 1
+5: 2
+6: 134
+7: 44
+8: 18
+9: 10
+10: 30
+11: 17
+12: 0
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 7.21484375, 8.147543203287144
+
+
+
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 1
+8: 0
+9: 0
+10: 0
+11: 0
+12: 0
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 7.0, 7.6582114827517955
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 1
+8: 0
+9: 1
+10: 0
+11: 0
+12: 0
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 8.0, 9.049591705039642
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 3
+7: 1
+8: 0
+9: 0
+10: 0
+11: 0
+12: 0
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 6.25, 7.179766975280741
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 5
+7: 1
+8: 1
+9: 0
+10: 0
+11: 1
+12: 0
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 7.0, 7.777057318942766
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 8
+7: 5
+8: 2
+9: 1
+10: 0
+11: 0
+12: 0
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 6.75, 7.591240311252357
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 20
+7: 3
+8: 1
+9: 4
+10: 3
+11: 1
+12: 0
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 7.0625, 7.95146956385529
+1: 0
+2: 0
+3: 0
+4: 0
+5: 1
+6: 34
+7: 15
+8: 6
+9: 0
+10: 4
+11: 4
+12: 0
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 6.96875, 7.855804655239368
+1: 0
+2: 0
+3: 0
+4: 0
+5: 2
+6: 52
+7: 35
+8: 13
+9: 10
+10: 12
+11: 4
+12: 0
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 7.2265625, 8.15347220454746
+
+
+
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 1
+8: 0
+9: 0
+10: 0
+11: 0
+12: 0
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 7.0, 8.118941072723507
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 2
+8: 0
+9: 0
+10: 0
+11: 0
+12: 0
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 7.0, 7.553281470222442
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 3
+7: 1
+8: 0
+9: 0
+10: 0
+11: 0
+12: 0
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 6.25, 7.10884738451806
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 5
+7: 0
+8: 0
+9: 1
+10: 2
+11: 0
+12: 0
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 7.375, 8.279643571565442
+1: 0
+2: 0
+3: 0
+4: 0
+5: 1
+6: 8
+7: 2
+8: 3
+9: 0
+10: 1
+11: 1
+12: 0
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 7.0, 7.895461353361257
+1: 0
+2: 0
+3: 0
+4: 0
+5: 1
+6: 20
+7: 1
+8: 1
+9: 6
+10: 2
+11: 1
+12: 0
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 7.03125, 8.009641773237384
+1: 0
+2: 0
+3: 0
+4: 0
+5: 1
+6: 38
+7: 8
+8: 7
+9: 3
+10: 3
+11: 3
+12: 1
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 6.984375, 7.86103732030388
+
+
+
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 0
+9: 0
+10: 1
+11: 0
+12: 0
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 10.0, 11.397674632948268
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 0
+9: 0
+10: 0
+11: 2
+12: 0
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 11.0, 12.063247791395947
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 0
+9: 0
+10: 0
+11: 4
+12: 0
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 11.0, 11.728695696831805
+
+
+
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 0
+9: 0
+10: 0
+11: 1
+12: 0
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 11.0, 12.27262978497637
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 1
+7: 0
+8: 0
+9: 0
+10: 1
+11: 0
+12: 0
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 8.0, 9.370503031783873
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 2
+7: 2
+8: 0
+9: 0
+10: 0
+11: 0
+12: 0
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 6.5, 7.174949606077177
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 7
+7: 0
+8: 0
+9: 0
+10: 1
+11: 0
+12: 0
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 6.5, 7.572876214126961
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 4
+7: 4
+8: 2
+9: 2
+10: 3
+11: 1
+12: 0
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 7.9375, 8.875617899057612
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 20
+7: 3
+8: 2
+9: 4
+10: 2
+11: 1
+12: 0
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 7.0, 7.904740779129028
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 33
+7: 12
+8: 9
+9: 2
+10: 4
+11: 4
+12: 0
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 7.125, 8.010668196569844
+
+
+
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 1
+8: 0
+9: 0
+10: 0
+11: 0
+12: 0
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 7.0, 7.7279204545632
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 1
+7: 0
+8: 0
+9: 0
+10: 1
+11: 0
+12: 0
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 8.0, 8.804849090542161
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 2
+7: 1
+8: 0
+9: 0
+10: 0
+11: 1
+12: 0
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 7.5, 8.36991551557592
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 4
+7: 3
+8: 1
+9: 0
+10: 0
+11: 0
+12: 0
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 6.625, 7.3198807654130515
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 7
+7: 3
+8: 2
+9: 1
+10: 2
+11: 1
+12: 0
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 7.4375, 8.30835345702499
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 13
+7: 5
+8: 4
+9: 3
+10: 3
+11: 4
+12: 0
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 7.6875, 8.566965545040038
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 35
+7: 14
+8: 2
+9: 1
+10: 10
+11: 2
+12: 0
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 7.109375, 8.05677422583573
+
+
+
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 1
+8: 0
+9: 0
+10: 0
+11: 0
+12: 0
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 7.0, 8.339850002884624
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 2
+7: 0
+8: 0
+9: 0
+10: 0
+11: 0
+12: 0
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 6.0, 6.708926257442949
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 2
+7: 1
+8: 0
+9: 0
+10: 1
+11: 0
+12: 0
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 7.25, 8.32487612423279
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 4
+7: 3
+8: 0
+9: 1
+10: 0
+11: 0
+12: 0
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 6.75, 7.7850651993281135
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 10
+7: 4
+8: 1
+9: 0
+10: 1
+11: 0
+12: 0
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 6.625, 7.484029130066879
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 17
+7: 6
+8: 1
+9: 2
+10: 4
+11: 1
+12: 1
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 7.28125, 8.255070861550042
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 43
+7: 7
+8: 5
+9: 2
+10: 4
+11: 2
+12: 1
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 6.859375, 7.712666422333926
+
+
+
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 1
+7: 0
+8: 0
+9: 0
+10: 0
+11: 0
+12: 0
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 6.0, 7.375039431346925
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 2
+8: 0
+9: 0
+10: 0
+11: 0
+12: 0
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 7.0, 7.754763803711576
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 3
+7: 0
+8: 1
+9: 0
+10: 0
+11: 0
+12: 0
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 6.5, 7.613224056392427
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 3
+7: 2
+8: 0
+9: 1
+10: 1
+11: 0
+12: 1
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 7.875, 8.676014672297622
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 9
+7: 0
+8: 0
+9: 5
+10: 1
+11: 1
+12: 0
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 7.5, 8.433883676855828
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 18
+7: 6
+8: 2
+9: 1
+10: 1
+11: 4
+12: 0
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 7.15625, 8.108883456118456
+1: 0
+2: 0
+3: 0
+4: 1
+5: 1
+6: 26
+7: 16
+8: 8
+9: 2
+10: 4
+11: 6
+12: 0
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 7.265625, 8.17473502526011
+1: 0
+2: 0
+3: 0
+4: 0
+5: 2
+6: 64
+7: 28
+8: 13
+9: 7
+10: 7
+11: 7
+12: 0
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 7.0625, 8.051294751679754
+1: 0
+2: 0
+3: 0
+4: 1
+5: 0
+6: 132
+7: 60
+8: 21
+9: 5
+10: 22
+11: 14
+12: 0
+13: 1
+14: 0
+15: 0
+Average max / average log 2: 7.09375, 7.981575174014352
+
+
+
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 0
+9: 0
+10: 0
+11: 0
+12: 1
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 12.0, 12.591989767615123
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 0
+9: 0
+10: 0
+11: 1
+12: 1
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 11.5, 12.49894084156302
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 0
+9: 0
+10: 2
+11: 1
+12: 1
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 10.75, 11.692085097055347
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 0
+9: 0
+10: 2
+11: 2
+12: 4
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 11.25, 12.050739190531086
+
+
+
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 0
+9: 0
+10: 0
+11: 1
+12: 0
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 11.0, 11.918863237274596
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 0
+9: 0
+10: 0
+11: 2
+12: 0
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 11.0, 12.08792490642216
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 0
+9: 0
+10: 1
+11: 0
+12: 3
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 11.5, 12.323603110609294
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 0
+9: 0
+10: 0
+11: 5
+12: 3
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 11.375, 12.29016766783998
+
+
+
+
+
+
+
+
+
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 0
+9: 0
+10: 0
+11: 1
+12: 0
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 11.0, 11.938109326219239
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 0
+9: 0
+10: 1
+11: 1
+12: 0
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 10.5, 11.23533142276662
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 0
+9: 0
+10: 1
+11: 3
+12: 0
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 10.75, 11.814740034604348
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 0
+9: 0
+10: 5
+11: 3
+12: 0
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 10.375, 11.357799235846596
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 0
+9: 0
+10: 4
+11: 10
+12: 2
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 10.875, 11.72019501189244
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 0
+9: 1
+10: 11
+11: 17
+12: 3
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 10.6875, 11.68419194685736
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 0
+9: 3
+10: 21
+11: 29
+12: 11
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 10.75, 11.72075699514325
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 1
+8: 0
+9: 3
+10: 42
+11: 67
+12: 15
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 10.7109375, 11.697458487986381
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 2
+8: 2
+9: 10
+10: 88
+11: 128
+12: 26
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 10.625, 11.64224246113767
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 1
+8: 3
+9: 29
+10: 173
+11: 253
+12: 53
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 10.626953125, 11.623897663057614
+
+
+
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 0
+9: 0
+10: 1
+11: 0
+12: 0
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 10.0, 10.82972273508606
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 0
+9: 0
+10: 2
+11: 0
+12: 0
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 10.0, 10.771599002932195
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 0
+9: 0
+10: 2
+11: 1
+12: 1
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 10.75, 11.900533215701318
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 0
+9: 0
+10: 0
+11: 5
+12: 3
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 11.375, 12.187089248017552
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 0
+9: 1
+10: 2
+11: 6
+12: 7
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 11.1875, 12.015934449280913
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 0
+9: 0
+10: 7
+11: 20
+12: 5
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 10.9375, 11.810582202342413
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 1
+7: 1
+8: 1
+9: 2
+10: 12
+11: 33
+12: 14
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 10.78125, 11.69695192141592
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 1
+9: 6
+10: 32
+11: 61
+12: 27
+13: 1
+14: 0
+15: 0
+Average max / average log 2: 10.859375, 11.782454617758585
+
+
+
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 0
+9: 0
+10: 0
+11: 1
+12: 0
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 11.0, 11.601770788407709
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 0
+9: 0
+10: 0
+11: 1
+12: 1
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 11.5, 12.051228805042058
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 0
+9: 0
+10: 1
+11: 3
+12: 0
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 10.75, 11.752890063866092
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 0
+9: 0
+10: 2
+11: 3
+12: 3
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 11.125, 11.989565204724343
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 1
+9: 0
+10: 2
+11: 9
+12: 4
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 10.9375, 11.817197482089302
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 0
+9: 1
+10: 4
+11: 18
+12: 9
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 11.09375, 11.91146915710241
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 0
+9: 1
+10: 16
+11: 34
+12: 13
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 10.921875, 11.80663320711509
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 1
+8: 0
+9: 6
+10: 30
+11: 71
+12: 20
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 10.796875, 11.696115889330848
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 1
+8: 1
+9: 12
+10: 65
+11: 129
+12: 48
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 10.8125, 11.727344819222512
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 0
+9: 17
+10: 121
+11: 247
+12: 125
+13: 2
+14: 0
+15: 0
+Average max / average log 2: 10.94921875, 11.843578291027553
+
+
+
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 0
+9: 0
+10: 0
+11: 1
+12: 0
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 11.0, 12.061371192659811
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 0
+9: 0
+10: 1
+11: 1
+12: 0
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 10.5, 11.274283504056196
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 0
+9: 0
+10: 1
+11: 3
+12: 0
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 10.75, 11.867253715421796
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 0
+9: 0
+10: 2
+11: 5
+12: 1
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 10.875, 11.992964608670254
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 0
+9: 1
+10: 6
+11: 6
+12: 3
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 10.6875, 11.660274173184611
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 0
+9: 0
+10: 7
+11: 20
+12: 5
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 10.9375, 11.791286890157286
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 0
+9: 1
+10: 23
+11: 28
+12: 12
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 10.796875, 11.79289413403988
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 0
+9: 5
+10: 24
+11: 70
+12: 29
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 10.9609375, 11.855163264919492
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 1
+9: 8
+10: 66
+11: 134
+12: 46
+13: 1
+14: 0
+15: 0
+Average max / average log 2: 10.85546875, 11.762422000677367
+
+
+
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 0
+9: 1
+10: 0
+11: 0
+12: 0
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 9.0, 10.392317422778762
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 0
+9: 0
+10: 1
+11: 1
+12: 0
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 10.5, 11.620288536529127
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 0
+9: 0
+10: 2
+11: 2
+12: 0
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 10.5, 11.660870150757152
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 0
+9: 0
+10: 0
+11: 6
+12: 2
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 11.25, 12.263210199446418
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 0
+9: 0
+10: 3
+11: 10
+12: 3
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 11.0, 11.874260805376993
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 0
+9: 4
+10: 6
+11: 15
+12: 7
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 10.78125, 11.742450745388444
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 0
+9: 2
+10: 9
+11: 42
+12: 11
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 10.96875, 11.880811439376329
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 1
+8: 1
+9: 2
+10: 37
+11: 65
+12: 22
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 10.796875, 11.712427877375944
+
+
+
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 0
+9: 0
+10: 1
+11: 0
+12: 0
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 10.0, 11.113742166049189
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 0
+9: 0
+10: 1
+11: 1
+12: 0
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 10.5, 11.526630192958102
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 0
+9: 1
+10: 2
+11: 0
+12: 1
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 10.25, 11.204559729174925
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 0
+9: 1
+10: 2
+11: 4
+12: 1
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 10.625, 11.530882767337893
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 0
+9: 1
+10: 8
+11: 5
+12: 2
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 10.5, 11.38451901737341
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 0
+9: 0
+10: 7
+11: 18
+12: 7
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 11.0, 11.853887043369774
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 1
+9: 3
+10: 22
+11: 28
+12: 10
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 10.671875, 11.658140410102202
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 1
+9: 9
+10: 29
+11: 63
+12: 25
+13: 1
+14: 0
+15: 0
+Average max / average log 2: 10.8203125, 11.766230192867669
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 2
+8: 2
+9: 9
+10: 54
+11: 133
+12: 55
+13: 1
+14: 0
+15: 0
+Average max / average log 2: 10.88671875, 11.805716979200602
+
+
+
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 0
+9: 0
+10: 0
+11: 1
+12: 0
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 11.0, 12.090112419664289
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 0
+9: 0
+10: 0
+11: 1
+12: 1
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 11.5, 12.251935792073258
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 0
+9: 0
+10: 1
+11: 1
+12: 1
+13: 1
+14: 0
+15: 0
+Average max / average log 2: 11.5, 12.230296690390578
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 0
+9: 0
+10: 5
+11: 3
+12: 0
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 10.375, 11.388690081817765
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 0
+9: 0
+10: 6
+11: 10
+12: 0
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 10.625, 11.626419014559524
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 0
+9: 0
+10: 6
+11: 16
+12: 10
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 11.125, 11.933237754816036
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 0
+9: 0
+10: 1
+11: 0
+12: 0
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 10.0, 11.07681559705083
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 0
+9: 0
+10: 1
+11: 1
+12: 0
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 10.5, 11.552594912703285
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 0
+9: 1
+10: 1
+11: 2
+12: 0
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 10.25, 11.287458178751717
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 0
+9: 0
+10: 2
+11: 3
+12: 2
+13: 1
+14: 0
+15: 0
+Average max / average log 2: 11.25, 12.083456718856509
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 0
+9: 0
+10: 5
+11: 8
+12: 3
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 10.875, 11.843045007808573
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 1
+7: 1
+8: 0
+9: 0
+10: 11
+11: 14
+12: 5
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 10.53125, 11.510726314059372
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 0
+9: 0
+10: 16
+11: 33
+12: 15
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 10.984375, 11.911343724233847
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 1
+8: 1
+9: 3
+10: 30
+11: 69
+12: 23
+13: 1
+14: 0
+15: 0
+Average max / average log 2: 10.859375, 11.79782370543679
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 1
+7: 0
+8: 0
+9: 6
+10: 57
+11: 125
+12: 66
+13: 1
+14: 0
+15: 0
+Average max / average log 2: 10.9765625, 11.888888357384392
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 1
+8: 4
+9: 16
+10: 126
+11: 260
+12: 102
+13: 3
+14: 0
+15: 0
+Average max / average log 2: 10.87109375, 11.786143494210167
+
+
+
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 1
+9: 8
+10: 62
+11: 113
+12: 68
+13: 4
+14: 0
+15: 0
+Average max / average log 2: 10.98046875, 11.886450993231014
+Average: 11.886
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 1
+7: 2
+8: 2
+9: 7
+10: 53
+11: 121
+12: 67
+13: 3
+14: 0
+15: 0
+Average max / average log 2: 10.94921875, 11.86750097477745
+Average: 11.868
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 1
+8: 0
+9: 3
+10: 53
+11: 126
+12: 72
+13: 1
+14: 0
+15: 0
+Average max / average log 2: 11.04296875, 11.935650176649151
+Average: 11.936
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 2
+9: 9
+10: 45
+11: 130
+12: 69
+13: 1
+14: 0
+15: 0
+Average max / average log 2: 11.0078125, 11.916196699301596
+Average: 11.916
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 2
+8: 0
+9: 8
+10: 60
+11: 132
+12: 53
+13: 1
+14: 0
+15: 0
+Average max / average log 2: 10.88671875, 11.819470829583056
+Average: 11.819
+Average: 11.885053934708452 +/- 0.0201755462601493
+
+
+
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 1
+8: 0
+9: 10
+10: 46
+11: 135
+12: 64
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 10.9765625, 11.885492293527765
+Average: 11.885
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 1
+9: 4
+10: 52
+11: 128
+12: 71
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 11.03125, 11.931179128844024
+Average: 11.931
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 1
+8: 1
+9: 8
+10: 50
+11: 123
+12: 69
+13: 4
+14: 0
+15: 0
+Average max / average log 2: 11.015625, 11.933452980888482
+Average: 11.933
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 1
+8: 1
+9: 8
+10: 50
+11: 127
+12: 68
+13: 1
+14: 0
+15: 0
+Average max / average log 2: 10.98828125, 11.891681776140752
+Average: 11.892
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 0
+9: 3
+10: 38
+11: 147
+12: 65
+13: 3
+14: 0
+15: 0
+Average max / average log 2: 11.10546875, 12.000042310596243
+Average: 12.000
+Average: 11.928369697999454 +/- 0.02043914319102546
+
+
+
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 0
+9: 12
+10: 62
+11: 133
+12: 48
+13: 1
+14: 0
+15: 0
+Average max / average log 2: 10.859375, 11.784579885502398
+Average: 11.785
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 2
+9: 10
+10: 68
+11: 131
+12: 44
+13: 1
+14: 0
+15: 0
+Average max / average log 2: 10.8125, 11.739710826987187
+Average: 11.740
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 3
+9: 9
+10: 68
+11: 127
+12: 49
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 10.8203125, 11.743390407914424
+Average: 11.743
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 1
+9: 10
+10: 73
+11: 119
+12: 51
+13: 2
+14: 0
+15: 0
+Average max / average log 2: 10.83984375, 11.78348206489531
+Average: 11.783
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 1
+8: 3
+9: 12
+10: 62
+11: 112
+12: 65
+13: 1
+14: 0
+15: 0
+Average max / average log 2: 10.875, 11.802720421942873
+Average: 11.803
+Average: 11.770776721448438 +/- 0.012424679188865279
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 2
+8: 1
+9: 9
+10: 48
+11: 135
+12: 56
+13: 5
+14: 0
+15: 0
+Average max / average log 2: 10.95703125, 11.905621016155335
+Average: 11.906
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 2
+8: 1
+9: 6
+10: 55
+11: 139
+12: 52
+13: 1
+14: 0
+15: 0
+Average max / average log 2: 10.90625, 11.822620103268601
+Average: 11.823
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 1
+8: 2
+9: 8
+10: 57
+11: 124
+12: 64
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 10.92578125, 11.84045625669529
+Average: 11.840
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 2
+9: 7
+10: 57
+11: 137
+12: 51
+13: 2
+14: 0
+15: 0
+Average max / average log 2: 10.9140625, 11.837416754573953
+Average: 11.837
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 1
+9: 6
+10: 59
+11: 125
+12: 65
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 10.96484375, 11.87710785558099
+Average: 11.877
+Average: 11.856644397254833 +/- 0.015177076538071545
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 1
+7: 1
+8: 0
+9: 3
+10: 45
+11: 132
+12: 70
+13: 4
+14: 0
+15: 0
+Average max / average log 2: 11.0703125, 11.941104323552194
+Average: 11.941
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 1
+8: 1
+9: 10
+10: 51
+11: 113
+12: 75
+13: 5
+14: 0
+15: 0
+Average max / average log 2: 11.02734375, 11.945434326248199
+Average: 11.945
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 0
+9: 13
+10: 52
+11: 120
+12: 70
+13: 1
+14: 0
+15: 0
+Average max / average log 2: 10.9765625, 11.88623673418893
+Average: 11.886
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 0
+9: 7
+10: 52
+11: 135
+12: 58
+13: 4
+14: 0
+15: 0
+Average max / average log 2: 11.0, 11.894441172414885
+Average: 11.894
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 1
+7: 0
+8: 0
+9: 8
+10: 51
+11: 128
+12: 67
+13: 1
+14: 0
+15: 0
+Average max / average log 2: 10.98828125, 11.889745234864145
+Average: 11.890
+Average: 11.911392358253671 +/- 0.013096569285882502
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 1
+9: 8
+10: 51
+11: 126
+12: 67
+13: 3
+14: 0
+15: 0
+Average max / average log 2: 11.01171875, 11.932439602050973
+Average: 11.932
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 1
+9: 4
+10: 50
+11: 144
+12: 56
+13: 1
+14: 0
+15: 0
+Average max / average log 2: 10.98828125, 11.905674957970424
+Average: 11.906
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 1
+9: 4
+10: 41
+11: 129
+12: 79
+13: 2
+14: 0
+15: 0
+Average max / average log 2: 11.12109375, 12.012122211381973
+Average: 12.012
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 0
+9: 5
+10: 54
+11: 124
+12: 71
+13: 2
+14: 0
+15: 0
+Average max / average log 2: 11.04296875, 11.921229333204211
+Average: 11.921
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 1
+9: 6
+10: 45
+11: 128
+12: 75
+13: 1
+14: 0
+15: 0
+Average max / average log 2: 11.06640625, 11.962536827536429
+Average: 11.963
+Average: 11.946800586428802 +/- 0.018796260466570857
+
+
+
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 0
+9: 6
+10: 52
+11: 133
+12: 64
+13: 1
+14: 0
+15: 0
+Average max / average log 2: 11.0078125, 11.881762916040953
+Average: 11.882
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 1
+8: 0
+9: 5
+10: 44
+11: 138
+12: 68
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 11.0390625, 11.905407170890115
+Average: 11.905
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 0
+9: 0
+10: 52
+11: 129
+12: 74
+13: 1
+14: 0
+15: 0
+Average max / average log 2: 11.09375, 11.961325176002136
+Average: 11.961
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 0
+9: 12
+10: 37
+11: 131
+12: 75
+13: 1
+14: 0
+15: 0
+Average max / average log 2: 11.0625, 11.924607286682555
+Average: 11.925
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 1
+8: 1
+9: 5
+10: 52
+11: 141
+12: 56
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 10.94921875, 11.864657511377764
+Average: 11.865
+Average: 11.907552012198705 +/- 0.016870168284044817
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 2
+8: 0
+9: 6
+10: 51
+11: 139
+12: 56
+13: 2
+14: 0
+15: 0
+Average max / average log 2: 10.95703125, 11.85690852962953
+Average: 11.857
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 0
+9: 2
+10: 48
+11: 148
+12: 56
+13: 2
+14: 0
+15: 0
+Average max / average log 2: 11.03125, 11.896234739011105
+Average: 11.896
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 1
+8: 0
+9: 5
+10: 51
+11: 129
+12: 69
+13: 1
+14: 0
+15: 0
+Average max / average log 2: 11.0234375, 11.884351005719385
+Average: 11.884
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 2
+8: 0
+9: 8
+10: 42
+11: 142
+12: 61
+13: 1
+14: 0
+15: 0
+Average max / average log 2: 10.98828125, 11.868992766718359
+Average: 11.869
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 1
+7: 1
+8: 0
+9: 7
+10: 46
+11: 135
+12: 65
+13: 1
+14: 0
+15: 0
+Average max / average log 2: 10.9921875, 11.903577044809921
+Average: 11.904
+Average: 11.88201281717766 +/- 0.00858048095067813
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 1
+9: 7
+10: 49
+11: 141
+12: 58
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 10.96875, 11.863007290388524
+Average: 11.863
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 1
+7: 0
+8: 1
+9: 5
+10: 38
+11: 154
+12: 54
+13: 3
+14: 0
+15: 0
+Average max / average log 2: 11.015625, 11.889684183158215
+Average: 11.890
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 1
+8: 1
+9: 6
+10: 56
+11: 144
+12: 48
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 10.89453125, 11.78634416643498
+Average: 11.786
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 0
+9: 5
+10: 50
+11: 152
+12: 49
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 10.95703125, 11.856842745229493
+Average: 11.857
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 1
+8: 0
+9: 4
+10: 47
+11: 140
+12: 64
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 11.01953125, 11.878032871341404
+Average: 11.878
+Average: 11.854782251310523 +/- 0.01804772082970674
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 2
+8: 0
+9: 7
+10: 56
+11: 157
+12: 33
+13: 1
+14: 0
+15: 0
+Average max / average log 2: 10.83203125, 11.728351780258414
+Average: 11.728
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 1
+8: 0
+9: 5
+10: 48
+11: 153
+12: 49
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 10.94921875, 11.808486245090647
+Average: 11.808
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 1
+8: 0
+9: 8
+10: 47
+11: 151
+12: 49
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 10.9296875, 11.80117116454101
+Average: 11.801
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 0
+9: 4
+10: 41
+11: 154
+12: 57
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 11.03125, 11.875105436729042
+Average: 11.875
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 1
+8: 0
+9: 9
+10: 47
+11: 145
+12: 53
+13: 1
+14: 0
+15: 0
+Average max / average log 2: 10.9453125, 11.812636531954963
+Average: 11.813
+Average: 11.805150231714816 +/- 0.023318168352891404
+
+
+
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 1
+8: 0
+9: 9
+10: 59
+11: 138
+12: 49
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 10.875, 11.793806987935739
+Average: 11.794
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 0
+9: 13
+10: 53
+11: 124
+12: 64
+13: 2
+14: 0
+15: 0
+Average max / average log 2: 10.95703125, 11.889443562408065
+Average: 11.889
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 0
+9: 5
+10: 49
+11: 126
+12: 75
+13: 1
+14: 0
+15: 0
+Average max / average log 2: 11.0703125, 11.962411352371165
+Average: 11.962
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 4
+8: 0
+9: 10
+10: 45
+11: 134
+12: 63
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 10.9296875, 11.870830860720943
+Average: 11.871
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 1
+8: 1
+9: 6
+10: 62
+11: 129
+12: 57
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 10.90625, 11.815848453278596
+Average: 11.816
+Average: 11.866468243342903 +/- 0.029659736234367684
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 1
+8: 0
+9: 7
+10: 50
+11: 131
+12: 63
+13: 4
+14: 0
+15: 0
+Average max / average log 2: 11.01171875, 11.89613442177829
+Average: 11.896
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 2
+8: 1
+9: 9
+10: 52
+11: 119
+12: 71
+13: 2
+14: 0
+15: 0
+Average max / average log 2: 10.9765625, 11.866436712209111
+Average: 11.866
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 2
+9: 9
+10: 55
+11: 132
+12: 58
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 10.91796875, 11.826728162355996
+Average: 11.827
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 1
+7: 0
+8: 1
+9: 16
+10: 52
+11: 119
+12: 65
+13: 2
+14: 0
+15: 0
+Average max / average log 2: 10.91015625, 11.832357705094257
+Average: 11.832
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 1
+8: 0
+9: 11
+10: 48
+11: 126
+12: 69
+13: 1
+14: 0
+15: 0
+Average max / average log 2: 10.98828125, 11.90151026200908
+Average: 11.902
+Average: 11.864633452689347 +/- 0.01554669865625426
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 1
+8: 3
+9: 7
+10: 54
+11: 128
+12: 62
+13: 1
+14: 0
+15: 0
+Average max / average log 2: 10.93359375, 11.852299269368524
+Average: 11.852
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 0
+9: 8
+10: 53
+11: 130
+12: 59
+13: 6
+14: 0
+15: 0
+Average max / average log 2: 11.0078125, 11.888275486973507
+Average: 11.888
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 1
+8: 0
+9: 7
+10: 48
+11: 122
+12: 77
+13: 1
+14: 0
+15: 0
+Average max / average log 2: 11.05078125, 11.968028173398631
+Average: 11.968
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 2
+8: 0
+9: 2
+10: 56
+11: 122
+12: 74
+13: 0
+14: 0
+15: 0
+Average max / average log 2: 11.0234375, 11.917734942503856
+Average: 11.918
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 0
+9: 7
+10: 48
+11: 136
+12: 61
+13: 4
+14: 0
+15: 0
+Average max / average log 2: 11.02734375, 11.938893919004686
+Average: 11.939
+Average: 11.91304635824984 +/- 0.020021093985766247
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 0
+9: 9
+10: 50
+11: 137
+12: 57
+13: 3
+14: 0
+15: 0
+Average max / average log 2: 10.98046875, 11.93209261674643
+Average: 11.932
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 1
+8: 3
+9: 7
+10: 49
+11: 118
+12: 73
+13: 5
+14: 0
+15: 0
+Average max / average log 2: 11.02734375, 11.922536795581417
+Average: 11.923
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 1
+9: 8
+10: 61
+11: 123
+12: 61
+13: 2
+14: 0
+15: 0
+Average max / average log 2: 10.94140625, 11.851411889316728
+Average: 11.851
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 1
+8: 0
+9: 3
+10: 42
+11: 134
+12: 74
+13: 2
+14: 0
+15: 0
+Average max / average log 2: 11.1015625, 11.985587697045167
+Average: 11.986
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 1
+8: 1
+9: 9
+10: 45
+11: 129
+12: 67
+13: 4
+14: 0
+15: 0
+Average max / average log 2: 11.01953125, 11.923807589881015
+Average: 11.924
+Average: 11.923087317714153 +/- 0.021360690215530168
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 0
+7: 0
+8: 0
+9: 14
+10: 47
+11: 140
+12: 54
+13: 1
+14: 0
+15: 0
+Average max / average log 2: 10.92578125, 11.856060352378233
+Average: 11.856
+1: 0
+2: 0
+3: 0
+4: 0
+5: 0
+6: 1
+7: 0
+8: 0
+9: 5
+10: 53
+11: 133
+12: 62
+13: 2
+14: 0
+15: 0
+Average max / average log 2: 10.9921875, 11.886459975547998
+Average: 11.886

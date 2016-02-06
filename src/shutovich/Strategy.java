@@ -31,6 +31,11 @@ abstract class Strategy {
             tolerance = Math.sqrt((sum2 - (sum * sum) / count) / (count * (count - 1)));
         }
         
+        @Override
+        public String toString() {
+            return "" + average + " +/- " + tolerance;
+        }
+        
     }
     
     FallbackStrategy fallbackStrategy;
@@ -98,7 +103,7 @@ abstract class Strategy {
     }
     
     double getPositionUnsafetyMeasure(long position, double tolerance, double predict, int maxTurns) {
-        int batchSize = 10;
+        int batchSize = 20;
         List<Double> lastInvTurns = new ArrayList<>();
         while (true) {
             for (int i = 0; i < batchSize; i++) {
@@ -107,8 +112,7 @@ abstract class Strategy {
             }
             Averager averager = new Averager(lastInvTurns);
             if (averager.tolerance < tolerance) {
-                Main.logger.debug("Count = " + lastInvTurns.size() + " average = " + averager.average + " +/- " + averager.tolerance
-                        + " predict = " + predict);
+                Main.logger.debug("Count = " + lastInvTurns.size() + " average = " + averager.toString() + " predict = " + predict);
                 return averager.average;
             }
         }

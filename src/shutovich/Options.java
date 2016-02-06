@@ -26,6 +26,7 @@ public class Options {
     double predictCombinationPower = 1.0;
     double closeFallbackWeight = 2.0;
     double endGamePredict = 3.0;
+    double measureWeight = 500.0;
 
 /* p = 0.2:
 

@@ -27,7 +27,7 @@ public class LoessSolver extends Solver {
         super(options, debug);
     }
 
-    PolynomialSplineFunction interpolate(List<Map.Entry<Double, Double>> data, BitSet omitted) {
+    static PolynomialSplineFunction interpolate(List<Map.Entry<Double, Double>> data, BitSet omitted) {
         List<Map.Entry<Double, Double>> data1 = IntStream.range(0, data.size())
                 .filter(i -> !omitted.get(i))
                 .mapToObj(i -> data.get(i))
@@ -57,7 +57,7 @@ public class LoessSolver extends Solver {
                 y.stream().mapToDouble(Double::doubleValue).toArray());
     }
 
-    double getOptimum(PolynomialSplineFunction function) {
+    static double getOptimum(PolynomialSplineFunction function) {
         double[] knots = function.getKnots();
         double tOpt = 0.0;
         double fOpt = -1e100;
@@ -73,7 +73,7 @@ public class LoessSolver extends Solver {
         return tOpt;
     }
 
-    void saveFunctionTable(PolynomialSplineFunction function, int pointCount, String fileName) {
+    static void saveFunctionTable(PolynomialSplineFunction function, int pointCount, String fileName) {
         try {
             double[] knots = function.getKnots();
             Files.write(new File(fileName).toPath(), IntStream.range(0, pointCount)
@@ -134,6 +134,7 @@ public class LoessSolver extends Solver {
         System.out.println("Saved " + i + " points to data_log");
     }
 
+    @Override
     Options optimize(int iFactor) {
         int iterationCount = 1000;
         int initialTryCount = 75;
@@ -162,8 +163,8 @@ public class LoessSolver extends Solver {
             for (int i = 0; i < optimaTryCount; i++) {
                 try {
                     // PolynomialSplineFunction function = interpolate(data, getRandomBitSet(data.size(), 0.5));
-                    PolynomialSplineFunction function = interpolate(data, new BitSet());
-                    double optimum = getOptimum(function);
+                    PolynomialSplineFunction function = LoessSolver.interpolate(data, new BitSet());
+                    double optimum = LoessSolver.getOptimum(function);
                     System.out.println("  Optimum " + i + ": " + optimum + ", value: " + function.value(optimum));
                     double quality = getQuality(getModifiedOptions(iFactor, optimum), iterationCount, null);
                     data.add(new AbstractMap.SimpleEntry<>(optimum, quality));
@@ -183,11 +184,11 @@ public class LoessSolver extends Solver {
             System.out.println();
 */
             saveCache();
-            PolynomialSplineFunction function = interpolate(data, new BitSet());
+            PolynomialSplineFunction function = LoessSolver.interpolate(data, new BitSet());
             logActualData(data);
             logFittedData(data, function);
             saveDataLog();
-            double tBest = getOptimum(function);
+            double tBest = LoessSolver.getOptimum(function);
             System.out.println("Calculating value (true)...");
             double bestValue = getQuality(getModifiedOptions(iFactor, tBest), iterationCount * 10, null);
             System.out.println("Optimum: " + tBest + ", value (expected): " + function.value(tBest)

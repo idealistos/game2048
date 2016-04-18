@@ -22,10 +22,11 @@ public class Options {
     double endGamePenalty = 1.4e7;
     double combinationPower = 1.0;
 
-    double fallbackThreshold = 0.5;
+    double fallbackThresholdFactor = 1.0;
     double predictCombinationPower = 1.0;
     double closeFallbackWeight = 2.0;
     double endGamePredict = 3.0;
+    double measureWeight = 500.0;
 
 /* p = 0.2:
 

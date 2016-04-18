@@ -1,8 +1,5 @@
 package shutovich;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
@@ -10,8 +7,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.io.*;
-import java.util.AbstractMap;
+import java.util.AbstractMap.SimpleEntry;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
@@ -24,6 +21,11 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.border.LineBorder;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.dmlc.xgboost4j.Booster;
+
+import shutovich.Classifier.Mode;
 
 public class Main {
 
@@ -79,13 +81,14 @@ public class Main {
                                     Strategy strategy = StrategyFactory.createStrategy(options);
                                     while (running) {
                                         try {
-                                            // strategy.nextTurn1();
-                                            showField(strategy.getField());
+                                            strategy.field.addRandomNumber();
+                                            strategy.turn++;
+                                            showField(strategy.field);
                                             Thread.sleep(400);
-                                            if (true) {// !strategy.nextTurn2()) {
+                                            if (!strategy.nextTurn()) {
                                                 running = false;
                                             } else {
-                                                showField(strategy.getField());
+                                                showField(strategy.field);
                                             }
                                             Thread.sleep(100);
                                         } catch (InterruptedException e) {
@@ -111,22 +114,88 @@ public class Main {
 
     static Logger logger = LogManager.getLogger(Main.class);
 
-
     @SuppressWarnings("unused")
-    public static void main(String[] args) {
-        Main.logger.info("\n\n");
-        int mode = -1;
-        // if (true) {
+    static void mainPlaying() {
+        int mode = 11;
+
         if (mode == 0) {
             new Window();
         } else if (mode == 1) {
             Options options = new Options();
             Solver solver = new FittedPolySolver(options, true);
-            FieldSaver saver = new FieldSaver("pos.1p3m5-50", true, false);
-            for (int i = 0; i < 14; i++) {
-                System.out.println("Average: " + String.format("%.2f", solver.getQuality(options, 1 << i, saver)));
+            FieldSaver saver = new FieldSaver("data/input/pos.rec1p3", true, false);
+            for (int i = 0; i < 16 ; i++) {
+                System.out.println("Average: " + String.format("%.3f", solver.getQuality(options, 1 << i, saver)));
             }
         } else if (mode == 2) {
+            InputPositions usedPositions = new InputPositions("data/input/pos.rec1.0.test-eval.1", false, true);
+            Booster booster = new Classifier("data/models/model-rec1-d4-auc2.10.fair").loadModel();
+            List<Integer> testIndices = usedPositions.getRandomTrainIndices(0, Mode.FAIR, 0.5, 0.0);
+            Map<Long, Double> predicts = Classifier.predict(booster, testIndices.stream()
+                    .map(j -> new SimpleEntry<>(new Long(j),
+                            usedPositions.features.get(usedPositions.positions.get(j))))
+                    .collect(Collectors.<Entry<Long, List<Double>>, Long, List<Double>>toMap(
+                            Entry::getKey, Entry::getValue, (x1, x2) -> x1)));
+            Strategy strategy = StrategyFactory.createStrategy(new Options());
+            for (int i : testIndices) {
+                strategy.getPositionUnsafetyMeasure(usedPositions.positions.get(i), 0.002,
+                        predicts.get(new Long(i)), 200);
+            }
+        } else if (mode == 3) {
+            InputPositions.checkAndSplit("data/input/pos.rec1.0", 0.05, 0.05, "2", false);
+            InputPositions usedPositions = new InputPositions("data/input/pos.rec1.0.learn.2", false, true);
+            Booster booster = new Classifier("data/models/model-rec1-d4-auc2.10.fair").loadModel();
+            Map<Long, Double> predicts = Classifier.predict(booster, usedPositions.features);
+            Strategy strategy = StrategyFactory.createStrategy(new Options());
+            Main.logger.debug("Positions to evaluate: " + usedPositions.positions.size());
+            strategy.savePositionUnsafetyMeasure(usedPositions, predicts, 0.005, 50, 0.01,
+                    "data/input/pos-measure.rec1");
+        } else if (mode == 4) {
+            InputPositions.checkAndSplit("data/input/pos.rec1p3.1", 0.2, 0.05, "1", false);
+            InputPositions usedPositions = new InputPositions("data/input/pos.rec1p3.1.test-eval.1", false, true);
+            // Booster booster = new Classifier("data/models/model-avg-rec1-d7.logit.fair").loadModel();
+            Booster booster = new Classifier("data/models/model-rec1p3-d5-auc2.test.10.fair").loadModel();
+            List<Integer> testIndices = usedPositions.getRandomTrainIndices(0, Mode.FAIR, 0.5, 0.0);
+            Map<Long, Double> predicts = Classifier.predict(booster, testIndices.stream()
+                    .map(j -> new SimpleEntry<>(new Long(j),
+                            usedPositions.features.get(usedPositions.positions.get(j))))
+                    .collect(Collectors.<Entry<Long, List<Double>>, Long, List<Double>>toMap(
+                            Entry::getKey, Entry::getValue, (x1, x2) -> x1)));
+            Strategy strategy = StrategyFactory.createStrategy(new Options());
+            for (int i : testIndices) {
+                strategy.getPositionUnsafetyMeasure(usedPositions.positions.get(i), 0.002,
+                        predicts.get(new Long(i)), 200);
+            }
+        } else if (mode == 5) {
+            InputPositions.checkAndSplit("data/input/pos.rec1p3.1", 0.2, 0.05, "1", false);
+            InputPositions usedPositions = new InputPositions("data/input/pos.rec1p3.1.learn.1", false, true);
+            Booster booster = new Classifier("data/models/model-rec1p3-d5-auc2.test.10.fair").loadModel();
+            Map<Long, Double> predicts = Classifier.predict(booster, usedPositions.features);
+            Strategy strategy = StrategyFactory.createStrategy(new Options());
+            Main.logger.debug("Positions to evaluate: " + usedPositions.positions.size());
+            strategy.savePositionUnsafetyMeasure(usedPositions, predicts, 0.007, 50, 0.01,
+                    "data/input/pos-measure.rec1p3");
+        } else if (mode == 11) { 
+            for (int j = 0; j <= 10; j++) {
+                Options options = new Options();
+                options.measureWeight = 200.0 * Math.exp(Math.log(1000.0 / 200.0) * j / 10.0); 
+                Solver solver = new FittedPolySolver(options, true);
+                Main.logger.debug("Added measure weight: " + options.measureWeight);
+                List<Double> qualities = new ArrayList<>();
+                for (int i = 0; i < 5 ; i++) {
+                    double quality = solver.getQuality(options, 256, null);
+                    Main.logger.info("Average: " + String.format("%.3f", quality));
+                    qualities.add(quality);
+                }
+                Main.logger.info("Average: " + new Strategy.Averager(qualities).toString());
+            }
+        }
+    }
+    
+    static void mainOptimizing() {
+        int mode = 1;
+        
+        if (mode == 0) {
             Options options = new Options();
             List<String> header = options.getHeader();
             double[] factors = new double[header.size()];
@@ -143,37 +212,58 @@ public class Main {
                     System.out.println("" + quality + "\t" + options1.getValues().stream().collect(Collectors.joining("\t")));
                 }
             }
-
-        } else if (mode == 3) {
+        } else if (mode == 1) {
             Options options = new Options();
             Solver solver = new LoessSolver(options, true);
             // Options options1 = solver.optimizeInSequence(Arrays.asList(3, 1, 0, 2, 4, 5, 3, 1, 0, 2, 4, 5));
-            Options options1 = solver.optimizeInSequence(Arrays.asList(6, 7, 3, 1, 6, 7, 0, 1, 2, 3, 4, 5, 6, 7));
+            // Options options1 = solver.optimizeInSequence(Arrays.asList(6, 7, 3, 1, 6, 7, 0, 1, 2, 3, 4, 5, 6, 7));
+            Options options1 = solver.optimizeInSequence(Arrays.asList(6));
             System.out.println(options1.toString());
             System.out.println("Average: " + String.format("%.2f",
                     solver.getQuality(options1, 5000, new FieldSaver("", true, false))));
             solver.saveCache();
-        } else if (mode == 4) {
-            InputPositions usedPositions = new InputPositions("data/input/pos.1p3m5-50.1.part1");
-            InputPositions evaluationPositions = new InputPositions("data/input/pos.1p3m5-50.1.part2");
-
-            // new Classifier(10, "model-50.10.top", 0.5, Classifier.Mode.TOP_ONLY).trainModel(positions, features);
-            // new Classifier(5, "model-50.5.top", 0.3, Classifier.Mode.TOP_ONLY).trainModel(positions, features);
-            for (int d : new int[] { 1, 2, 3, 4, 5, 8 }) {
-                new Classifier(20, "data/models/model-50d" + d + "auc2.20.fair", 0.5, Classifier.Mode.FAIR, d).trainModel(usedPositions, evaluationPositions);
-                new Classifier(10, "data/models/model-50d" + d + "auc2.10.fair", 0.5, Classifier.Mode.FAIR, d).trainModel(usedPositions, evaluationPositions);
-                new Classifier(5, "data/models/model-50d" + d + "auc2.5.fair", 0.3, Classifier.Mode.FAIR, d).trainModel(usedPositions, evaluationPositions);
+        }        
+    }
+    
+    static void mainLearning() {
+        int mode = 3;
+        
+        if (mode == 0) {
+            InputPositions.checkAndSplit("data/input/pos.rec1.0", 0.1, 0.05, "1", false);
+            InputPositions usedPositions = new InputPositions("data/input/pos.rec1.0.learn.1", false, true);
+            InputPositions evaluationPositions = new InputPositions("data/input/pos.rec1.0.test-eval.1", false, true);
+            for (int d : new int[] { 2, 3, 4, 5 }) {
+                new Classifier(10, "data/models/model-rec1-d" + d + "-auc2.10.fair", Classifier.Mode.FAIR, d, false)
+                        .trainModel(usedPositions, evaluationPositions, false);
             }
-        } else if (mode == 5) {
-            FieldSaver saver = new FieldSaver("d:\\programming\\java\\game2048\\saved.0", false, false);
-            List<Entry<Long, Integer>> positions = saver.loadPositions();
-            Map<Long, List<Double>> features = positions.stream()
-                    .map(x -> new AbstractMap.SimpleEntry<>(x.getKey(), new GameField(x.getKey()).getFeatures()))
-                    .collect(Collectors.toMap(Entry::getKey, Entry::getValue, (x1, x2) -> x1));
-            Map<Long, Double> predict1 = Classifier.predict(new Classifier("model.5").loadModel(), features);
-            Map<Long, Double> predict2 = Classifier.predict(new Classifier("model.10").loadModel(), features);
-            saver.savePositionsWithValues(predict1, predict2);
-        } else if (mode == 6) {
+        } else if (mode == 1) {
+            InputPositions usedPositions = new InputPositions("data/input/pos-measure.rec1", true, true);
+            InputPositions evaluationPositions = new InputPositions("data/input/pos.rec1.0.test-eval.2", false, true);
+            for (int d : new int[] { 3, 5, 7, 8, 9 }) {
+                new Classifier(-1, "data/models/model-avg-rec1-d" + d + ".logit.fair", Classifier.Mode.EVEN, d, false)
+                        .trainModel(usedPositions, evaluationPositions, true);
+            }
+        } else if (mode == 2) {
+            InputPositions.checkAndSplit("data/input/pos.rec1p3.1", 0.2, 0.05, "1", false);
+            InputPositions usedPositions = new InputPositions("data/input/pos.rec1p3.1.learn.1", false, true);
+            InputPositions evaluationPositions = new InputPositions("data/input/pos.rec1p3.1.test-eval.1", false, true);
+            for (int d : new int[] { 4, 5, 6, 7 }) {
+                new Classifier(10, "data/models/model-rec1p3-d" + d + "-auc2.test.10.fair", Classifier.Mode.FAIR, d, false)
+                        .trainModel(usedPositions, evaluationPositions, false);
+            }
+        } else if (mode == 3) {
+            InputPositions usedPositions = new InputPositions("data/input/pos-measure.rec1p3", true, true);
+            InputPositions evaluationPositions = new InputPositions("data/input/pos.rec1p3.1.test-eval.1", false, true);
+            for (int d : new int[] { 2, 4, 6 }) {
+                new Classifier(-1, "data/models/model-avg-rec1p3-d" + d + ".logit.fair", Classifier.Mode.EVEN, d, false)
+                        .trainModel(usedPositions, evaluationPositions, true);
+            }
+        } else if (mode == 21) {
+            InputPositions inputPositions = new InputPositions("saved.0", false, true);
+            Map<Long, Double> predict1 = Classifier.predict(new Classifier("model.5").loadModel(), inputPositions.features);
+            Map<Long, Double> predict2 = Classifier.predict(new Classifier("model.10").loadModel(), inputPositions.features);
+            new FieldSaver("saved.0", false, true).savePositionsWithValues(predict1, predict2);
+        } else if (mode == 22) {
             String[] models = { "model.10", "model.5", "model-50.10", "model-50.10.top", "model-50.5", "model-50.5.fair", "model-50.5.top" };
             String[] inputs = { "pos.1-50.1", "pos.1p3m5-50.1" };
             // String[] inputs = { "pos.1-50.0", "pos.1p3m5-50.0" };
@@ -183,5 +273,33 @@ public class Main {
                 }
             }
         }
+    }        
+    
+    static void testVariance() {
+        int count = 5;
+        List<Double> averages = new ArrayList<>();
+        List<Double> tolerances = new ArrayList<>();
+        for (int i = 0; i < 40000; i++) {
+            List<Double> values = new ArrayList<>();
+            for (int k = 0; k < count; k++) {
+                values.add(GameField.random.nextGaussian() * 0.2 + 0.3);
+            }
+            Strategy.Averager averager = new Strategy.Averager(values);
+            // System.out.println(averager.toString());
+            averages.add(averager.average);
+            tolerances.add(averager.tolerance);
+        }
+        System.out.println("Sigma of averages: " + new Strategy.Averager(averages).tolerance * Math.sqrt(averages.size()));
+        System.out.println("Tolerances: " + new Strategy.Averager(tolerances).toString());
+        
     }
+
+    public static void main(String[] args) {
+        Main.logger.info("\n\n");
+        Main.mainPlaying();
+        // Main.mainOptimizing();
+        // Main.mainLearning();
+        // testVariance();
+    }
+    
 }

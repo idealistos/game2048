@@ -1,9 +1,43 @@
 package shutovich;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.Writer;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
 /**
  * Created by U on 12/12/2015.
  */
-public abstract class Strategy {
+abstract class Strategy {
+
+    static class Averager {
+        double average;
+        double tolerance;
+        int count;
+        
+        Averager(List<Double> values) {
+            count = values.size();
+            double sum = 0.0;
+            double sum2 = 0.0;
+            for (Double value : values) {
+                sum += value;
+                sum2 += value * value;
+            }
+            average = sum / count;
+            tolerance = Math.sqrt((sum2 - (sum * sum) / count) / (count * (count - 1)));
+        }
+        
+        @Override
+        public String toString() {
+            return "" + average + " +/- " + tolerance;
+        }
+        
+    }
+    
     FallbackStrategy fallbackStrategy;
     Options options;
     GameField field;
@@ -15,10 +49,6 @@ public abstract class Strategy {
         field = new GameField();
     }
 
-    GameField getField() {
-        return field;
-    }
-
     abstract Action chooseOptimalAction();
 
     boolean nextTurn() {
@@ -27,7 +57,7 @@ public abstract class Strategy {
             oldField = new GameField(field);
         }
         Direction direction = chooseOptimalAction().direction;
-        if (fallbackStrategy != null && field.getMaxValue() >= 9 && fallbackStrategy.needsFallback(field)) {
+        if (fallbackStrategy != null && field.getMaxValue() >= 8 && fallbackStrategy.needsFallback(field)) {
             Action bestAction = fallbackStrategy.chooseOptimalAction(oldField);
             direction = bestAction.direction;
             field = (direction == null)? field : bestAction.field;
@@ -43,17 +73,18 @@ public abstract class Strategy {
         return (direction != null);
     }
 
-    int simulate(FieldSaver saver) {
-        field.reset();
+    void simulate(GameField startingPosition, FieldSaver saver, int maxTurns) {
+        field = (startingPosition == null)? new GameField() : new GameField(startingPosition);
         turn = 0;
         if (saver != null) {
             saver.reset();
         }
-        while (true) {
+        while (turn < maxTurns || maxTurns < 0) {
+            long position = field.lines;
             field.addRandomNumber();
             turn++;
             if (saver != null) {
-                saver.checkAndWriteField(field, turn);
+                saver.checkAndWriteField(position, field.lines, turn);
             }
             if (!nextTurn()) {
                 break;
@@ -65,7 +96,44 @@ public abstract class Strategy {
         if (field.getMaxValue() >= 13) {
             System.out.println(field.toString() + "\n");
         }
-        return (int) field.getMaxValue();
     }
-
+    
+    void simulate(FieldSaver saver) {
+        simulate(null, saver, -1);
+    }
+    
+    double getPositionUnsafetyMeasure(long position, double tolerance, double predict, int maxTurns) {
+        int batchSize = 20;
+        List<Double> lastInvTurns = new ArrayList<>();
+        while (true) {
+            for (int i = 0; i < batchSize; i++) {
+                simulate(new GameField(position), null, maxTurns);
+                lastInvTurns.add((turn == maxTurns)? 0.0 : 1.0 / turn);
+            }
+            Averager averager = new Averager(lastInvTurns);
+            if (averager.tolerance < tolerance) {
+                Main.logger.debug("Count = " + lastInvTurns.size() + " average = " + averager.toString() + " predict = " + predict);
+                return averager.average;
+            }
+        }
+    }
+    
+    void savePositionUnsafetyMeasure(InputPositions usedPositions, Map<Long, Double> predicts, double predictThreshold,
+            int maxTurns, double tolerance, String fileName) {
+        try (Writer file = new BufferedWriter(new FileWriter(new File(fileName)))) {
+            for (int i = 0; i < usedPositions.positions.size(); i++) {
+                long position = usedPositions.positions.get(i);
+                if (predicts.get(position) < predictThreshold) {
+                    file.write(Long.toHexString(position) + "\t0.0\n");
+                } else {
+                    double measure = getPositionUnsafetyMeasure(position, tolerance, predicts.get(position), maxTurns);
+                    file.write(Long.toHexString(position) + "\t" + measure + "\n");
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    
+    
 }

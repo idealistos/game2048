@@ -1,5 +1,10 @@
 package shutovich;
 
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.util.stream.Collectors;
+
 import org.dmlc.xgboost4j.Booster;
 
 /**
@@ -11,7 +16,8 @@ public class IncreasedDepthFallbackStrategy extends CheckingFallbackStrategy {
     int depth;
 
     IncreasedDepthFallbackStrategy(String modelFileName, Options options, int depth) {
-        super(options);
+        super(options, 0.0);
+        readThreshold(modelFileName);
         model = new Classifier(modelFileName).loadModel();
         this.depth = depth;
     }
@@ -23,8 +29,6 @@ public class IncreasedDepthFallbackStrategy extends CheckingFallbackStrategy {
 
     @Override
     public Action chooseOptimalAction(GameField field) {
-        Strategy strategy = new MinMismatchDepthNStrategy(options, null, depth);
-        strategy.field = field;
-        return strategy.chooseOptimalAction();
+        return MinMismatchDepthNStrategy.chooseOptimalAction(field, options, depth, false, null, -1);
     }
 }

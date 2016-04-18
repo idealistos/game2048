@@ -3,12 +3,10 @@ package shutovich;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
-import java.sql.Time;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.BitSet;
 import java.util.Collections;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
@@ -34,7 +32,7 @@ public abstract class Solver {
         header = defaultOptions.getHeader();
         random.setSeed(1L);
         try {
-            cache = Files.readAllLines(new File("cache").toPath()).stream().map(s -> s.split("\t"))
+            cache = Files.readAllLines(new File("data/cache/cache").toPath()).stream().map(s -> s.split("\t"))
                     .collect(Collectors.groupingBy(x -> x[0],
                             Collectors.mapping(x -> Double.parseDouble(x[1]), Collectors.toList())));
             usedCounts = cache.keySet().stream().collect(Collectors.toMap(s -> s, s -> 0));
@@ -97,28 +95,31 @@ public abstract class Solver {
         }
         Strategy strategy = StrategyFactory.createStrategy(options);
         int[] maxCounts = new int[16];
+        double totalSum = 0.0;
         for (int p = 0; p < tryCount; p++) {
             if (debug && p % 100 == 0) {
                 System.out.print("" + p + " ");
             }
-            int maxValue = strategy.simulate(saver);
-            maxCounts[maxValue]++;
-        }
-        int allSum = 0;
-        int allCounts = 0;
-        for (int p = 1; p < 16; p++) {
+            strategy.simulate(saver);
             if (debug) {
-                System.out.println("" + p + ": " + maxCounts[p]);
+                int maxValue = (int) strategy.field.getMaxValue();
+                maxCounts[maxValue]++;
             }
-            allSum += p * maxCounts[p];
-            allCounts += maxCounts[p];
+            totalSum += Math.log(strategy.field.getSum()) / Math.log(2.0);
         }
-        double value = allSum / (allCounts + 0.0);
-        addToCache(options, value);
         if (debug) {
-            System.out.println("" + value + " in " + (System.nanoTime() - time) / (tryCount * 1e9) + " s ["
-                    + tryCount + "]");
+            int allSum = 0;
+            int allCounts = 0;
+            for (int p = 1; p < 16; p++) {
+                Main.logger.info("" + p + ": " + maxCounts[p]);
+                allSum += p * maxCounts[p];
+                allCounts += maxCounts[p];
+            }
+            Main.logger.info("Average max / average log 2: " + (allSum / (allCounts + 0.0)) + ", " + (totalSum / tryCount));
         }
+        double value = totalSum / tryCount;
+        addToCache(options, value);
+        Main.logger.debug("" + value + " in " + (System.nanoTime() - time) / (tryCount * 1e9) + " s [" + tryCount + "]");
         return value;
     }
 

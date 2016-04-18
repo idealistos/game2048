@@ -1,6 +1,7 @@
 package shutovich;
 
 import java.util.AbstractMap.SimpleEntry;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
@@ -15,10 +16,11 @@ public class ClassifierFallbackStrategy extends CheckingFallbackStrategy {
 
     Booster[] models;
     double[] weights;
-    boolean consider4s = false;
+    boolean check4s = false;
 
     ClassifierFallbackStrategy(String[] modelFileNames, double[] weights, Options options) {
-        super(options);
+        super(options, 0.0);
+        readThreshold(modelFileNames[0]);
         assert(modelFileNames.length == weights.length);
         models = new Booster[modelFileNames.length];
         for (int i = 0; i < modelFileNames.length; i++) {
@@ -55,25 +57,46 @@ public class ClassifierFallbackStrategy extends CheckingFallbackStrategy {
     Booster getCheckingModel() {
         return models[0];
     }
-
-    @Override
-    public Action chooseOptimalAction(GameField field) {
-        Map<Direction, List<Entry<Map<Direction, Long>, Double>>> positionsToCheck
-                = field.getPositionsInDepth1(consider4s);
-        if (positionsToCheck.isEmpty()) {
-            return new Action(null, 1e6, null);
-        }
+    
+    static Map<Long, Double> getPredicts(Map<Direction, List<Entry<Map<Direction, Long>, Double>>> positionsToCheck,
+            Booster model, boolean check4s) {
         List<Long> allPositions = positionsToCheck.entrySet().stream()
                 .<Long>flatMap(x -> x.getValue().stream().flatMap(y -> y.getKey().values().stream()))
                 .collect(Collectors.toList());
-        if (allPositions.isEmpty()) {
+        if (!allPositions.isEmpty()) {
+            Map<Long, List<Double>> features = allPositions.stream().distinct()
+                    .map(x -> new SimpleEntry<>(x, new GameField(x).getFeatures()))
+                    .collect(Collectors.toMap(Entry::getKey, Entry::getValue));
+            return Classifier.predict(model, features);
+        }
+        return new HashMap<>();
+    }
+
+    static Map<Long, Double> getPredicts(Map<Direction, List<Entry<Map<Direction, Long>, Double>>> positionsToCheck,
+            Booster[] models, double[] weights, boolean check4s) {
+        List<Long> allPositions = positionsToCheck.entrySet().stream()
+                .<Long>flatMap(x -> x.getValue().stream().flatMap(y -> y.getKey().values().stream()))
+                .collect(Collectors.toList());
+        if (!allPositions.isEmpty()) {
+            Map<Long, List<Double>> features = allPositions.stream().distinct()
+                    .map(x -> new SimpleEntry<>(x, new GameField(x).getFeatures()))
+                    .collect(Collectors.toMap(Entry::getKey, Entry::getValue));
+            return Classifier.predict(models, weights, features);
+        }
+        return new HashMap<>();
+    }
+
+    @Override
+    public Action chooseOptimalAction(GameField field) {
+        Map<Direction, List<Entry<Map<Direction, Long>, Double>>> positionsToCheck = field.getPositionsInDepth1(check4s);
+        if (positionsToCheck.isEmpty()) {
+            return new Action(null, 1e6, null);
+        }
+        Map<Long, Double> predicts = ClassifierFallbackStrategy.getPredicts(positionsToCheck, models, weights, check4s);
+        if (predicts.isEmpty()) {
             Direction direction = positionsToCheck.keySet().iterator().next();
             return new Action(field.shift(direction), 1e6, direction);
         }
-        Map<Long, List<Double>> features = allPositions.stream().distinct()
-                .map(x -> new SimpleEntry<>(x, new GameField(x).getFeatures()))
-                .collect(Collectors.toMap(Entry::getKey, Entry::getValue));
-        Map<Long, Double> predicts = Classifier.predict(models, weights, features);
         Entry<Direction, Double> bestDirection = getBestDirection(positionsToCheck, predicts);
         field.shift(bestDirection.getKey());
         return new Action(field, bestDirection.getValue(), bestDirection.getKey());

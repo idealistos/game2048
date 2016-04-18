@@ -10,6 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.*;
 import java.util.AbstractMap;
 import java.util.Arrays;
 import java.util.List;
@@ -22,6 +23,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.border.LineBorder;
+
 
 public class Main {
 
@@ -77,10 +79,10 @@ public class Main {
                                     Strategy strategy = StrategyFactory.createStrategy(options);
                                     while (running) {
                                         try {
-                                            strategy.nextTurn1();
+                                            // strategy.nextTurn1();
                                             showField(strategy.getField());
                                             Thread.sleep(400);
-                                            if (!strategy.nextTurn2()) {
+                                            if (true) {// !strategy.nextTurn2()) {
                                                 running = false;
                                             } else {
                                                 showField(strategy.getField());
@@ -113,8 +115,7 @@ public class Main {
     @SuppressWarnings("unused")
     public static void main(String[] args) {
         Main.logger.info("\n\n");
-
-        int mode = 4;
+        int mode = -1;
         // if (true) {
         if (mode == 0) {
             new Window();
